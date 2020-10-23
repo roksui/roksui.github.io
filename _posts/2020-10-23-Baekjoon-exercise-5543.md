@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[백준 1051: 숫자 정사각형]"
+title:  "[백준 5543: 상근날드]"
 date:   2020-10-23 17:02:56 +0900
 categories: jekyll update
 ---
@@ -40,4 +40,4 @@ public class Sangeunald {
 	}
 
 }
-{% end highlight %}
+{% endhighlight %}
