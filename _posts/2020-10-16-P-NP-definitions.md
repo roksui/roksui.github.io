@@ -55,3 +55,10 @@ We first define the following:
 **Definition (Language)**: Given an alphabet $A$, a language $L$ is a set of finite strings, where each string is composed of symbols from $A$.
 
 **Definition (P)**: A string $S$ is in a language $L$ if the deciding Turing Machine $M$ run on the string $S$ such that $M$ eventually halts and enters an accept state in polynomial time. We say that $M$ is polynomial time if for all strings in a language, $M$ enters either an accept state or reject state after at most $P(\lvert S\rvert)$ steps, where $P$ is a polynomial and $\lvert S\rvert$ is the length of $S$. A language is in $P$ if $\exists M$ such that the above condition is satisfied.
+
+**Definition (NP)**: A language $L$ is in $NP$ if for every $S$ in $L$ there exists a verifier $V$ such that there exists a polynomial time Turing Machine $M$ such that $M(V,S)$ accepts if $S$ is in $L$ and rejects if $S$ is not in $L$.
+
+
+Reference:
+
+Andzu Schaefer. N vs NP, January 2017
