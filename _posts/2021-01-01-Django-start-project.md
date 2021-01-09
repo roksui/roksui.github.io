@@ -42,3 +42,5 @@ If you want to add a functionality to your website, an app does it.
 {% highlight bash %}
 >> (myvenv) python manage.py startapp survey
 {% endhighlight %}
+
+In settings.py - INSTALLED_APPS, add the new app's name.
