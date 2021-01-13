@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[백준 1316: 그룹 단어 체커]"
-date:   2020-11-01 22:59:56 +0900
+date:   2021-01-09 22:59:56 +0900
 categories: jekyll update
 ---
 
