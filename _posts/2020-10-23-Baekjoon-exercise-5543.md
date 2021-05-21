@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 5543: 상근날드]"
-date:   2020-10-23 17:02:56 +0900
-categories: jekyll update
+#date:   2020-10-23 17:02:56 +0900
+#categories: jekyll update
 ---
 
 '상근날드' : 버거 세개 중에 가장 싼 것, 음료 두개 중에 가장 싼 것을 찾아 더하고 50을 빼주면 되는 간단한 수학 문제이다.

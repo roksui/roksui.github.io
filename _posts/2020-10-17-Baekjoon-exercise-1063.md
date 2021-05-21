@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 1063: 킹]"
-date:   2020-10-17 22:10:56 +0900
-categories: jekyll update
+#date:   2020-10-17 22:10:56 +0900
+#categories: jekyll update
 ---
 
 아직 익숙하지 않은 시뮬레이션 알고리즘이었다.

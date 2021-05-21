@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "P vs NP Basics"
-date:   2020-10-16 22:44:56 +0900
-categories: jekyll update
+#date:   2020-10-16 22:44:56 +0900
+#categories: jekyll update
 use_math: true
 ---
 

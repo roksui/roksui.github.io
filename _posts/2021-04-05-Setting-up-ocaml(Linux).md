@@ -1,8 +1,8 @@
 ---
-layout: post
+# layout: posts
 title:  "Setting up OCaml Environment on Ubuntu(Linux)"
-date:   2021-04-05 10:10:56 +0900
-categories: jekyll update
+# date:   2021-04-05 10:10:56 +0900
+# categories: jekyll update
 ---
 
 ## Opam 설치

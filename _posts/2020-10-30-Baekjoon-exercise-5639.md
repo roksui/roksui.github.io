@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 5639: 이진 검색 트리]"
-date:   2020-10-30 16:42:56 +0900
-categories: jekyll update
+#date:   2020-10-30 16:42:56 +0900
+#categories: jekyll update
 ---
 
 이진 탐색 트리(Binary Search Tree)는 다음 과 같은 특성을 갖는다.

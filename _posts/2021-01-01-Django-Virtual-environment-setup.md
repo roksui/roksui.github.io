@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[Django] Setting up a virtual environment"
-date:   2021-01-01 18:14:56 +0900
-categories: jekyll update
+#date:   2021-01-01 18:14:56 +0900
+#categories: jekyll update
 ---
 
 # Why create a virtual environment?

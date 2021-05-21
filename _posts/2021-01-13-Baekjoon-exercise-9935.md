@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 9935: 문자열 폭발]"
-date:   2021-01-13 20:59:56 +0900
-categories: jekyll update
+#date:   2021-01-13 20:59:56 +0900
+#categories: jekyll update
 ---
 
 Python Code

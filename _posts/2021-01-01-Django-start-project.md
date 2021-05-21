@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[Django] Starting a project"
-date:   2021-01-01 18:48:56 +0900
-categories: jekyll update
+#date:   2021-01-01 18:48:56 +0900
+#categories: jekyll update
 ---
 
 ## For Windows:

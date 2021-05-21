@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "Java Agents and Instrumentation"
-date:   2021-05-12 10:10:56 +0900
-categories: jekyll update
+#date:   2021-05-12 10:10:56 +0900
+#categories: jekyll update
 ---
 
 ## Instrumentation이란?

@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 1074: Z]"
-date:   2020-10-17 22:03:56 +0900
-categories: jekyll update
+#date:   2020-10-17 22:03:56 +0900
+#categories: jekyll update
 ---
 
 재귀함수를 써서 풀면 되는 문제였다.

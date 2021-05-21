@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 10250: ACM 호텔]"
-date:   2020-10-16 15:03:56 +0900
-categories: jekyll update
+#date:   2020-10-16 15:03:56 +0900
+#categories: jekyll update
 ---
 
 mod 연산자와 / 연산자를 사용한 수식을 통해 해당 n번째 손님의 호수를 찾는 방식을 사용하였다.

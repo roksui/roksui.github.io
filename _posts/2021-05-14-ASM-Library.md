@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "ASM - A Java bytecode Engineering Library (1)"
-date:   2021-05-14 15:10:56 +0900
-categories: jekyll update
+#date:   2021-05-14 15:10:56 +0900
+#categories: jekyll update
 ---
 
 ## Introduction
@@ -63,3 +63,5 @@ int[] m(int i, String s) // ==> (ILjava/lang/String;)[I
 Object m(int[] i) // ==> ([I)Ljava/lang/Object;
 {% endhighlight %}
 
+### Interfaces and Components
+컴파일된 클래스를 생성 및 변환하기 위한 ASM API는 ClassVisitor라는 추상 클래스를 기반으로 한다.
