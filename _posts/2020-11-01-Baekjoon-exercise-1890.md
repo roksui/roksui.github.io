@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 1890: 점프]"
-date:   2020-11-01 22:59:56 +0900
-categories: jekyll update
+#date:   2020-11-01 22:59:56 +0900
+#categories: jekyll update
 ---
 
 완전탐색을 하여 DP를 사용하여 각 칸마다 도달할 수 있는 경우의 수를 저장해준다.

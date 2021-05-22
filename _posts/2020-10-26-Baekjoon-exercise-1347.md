@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 1347: 미로 만들기]"
-date:   2020-10-26 18:32:56 +0900
-categories: jekyll update
+#date:   2020-10-26 18:32:56 +0900
+#categories: jekyll update
 ---
 
 움직임에 따라 방향 조정을 해주는 rotate함수를 만들어 방향을 바꿔준다.

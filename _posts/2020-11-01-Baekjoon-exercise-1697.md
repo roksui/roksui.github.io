@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 1697: 숨바꼭질]"
-date:   2020-11-01 22:30:56 +0900
-categories: jekyll update
+#date:   2020-11-01 22:30:56 +0900
+#categories: jekyll update
 ---
 
 3번의 경우의 수의 움직임을 다 시험해보는 BFS를 돌려 수빈이가 동생의 포지션으로 가면 축적해놓은 시간을 리턴해준다.

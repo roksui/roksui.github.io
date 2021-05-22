@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 3040: 백설 공주와 일곱 난쟁이]"
-date:   2020-10-21 17:14:56 +0900
-categories: jekyll update
+#date:   2020-10-21 17:14:56 +0900
+#categories: jekyll update
 ---
 
 Brute Force를 사용하여 모든 경우의 수를 확인해야 하는 문제이다.

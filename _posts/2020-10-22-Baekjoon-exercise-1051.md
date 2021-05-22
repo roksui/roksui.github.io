@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 1051: 숫자 정사각형]"
-date:   2020-10-22 10:02:56 +0900
-categories: jekyll update
+#date:   2020-10-22 10:02:56 +0900
+#categories: jekyll update
 ---
 
 # First Attempt
