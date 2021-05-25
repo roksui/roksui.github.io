@@ -1,8 +1,8 @@
 ---
-layout: post
+#layout: post
 title:  "[백준 1038: 감소하는 수]"
-date:   2021-01-18 20:31:56 +0900
-categories: jekyll update
+#date:   2021-01-18 20:31:56 +0900
+#categories: jekyll update
 ---
 
 Python Code
