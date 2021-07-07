@@ -17,6 +17,12 @@
     {% if page.use_math %}
       {% include mathjax_support.html %}
     {% endif %}
+
+    <!-- pseudocode.js 추가 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
+    <script src="/assets/js/custom/pseudocode.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/assets/css/custom/pseudocode.css" type="text/css">
   </head>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
