@@ -78,7 +78,8 @@ min 대신에 max 버전도 있지만 동시에 사용할 수는 없다.
 - A[i, n)은 priority queue이고 모든 원소가 A[i-1]보다 크거나 같다.
 
 예시:
-![Selection Sort]](/assets/img/selection_sort.png)
+
+![Selection Sort](/assets/img/selection_sort.png)
 
 ### Insertion Sort (삽입정렬)
 정렬된 리스트 구형의 변형으로 볼 수 있다.
@@ -111,4 +112,5 @@ min 대신에 max 버전도 있지만 동시에 사용할 수는 없다.
 - A[i,n)는 삽입될 리스트이다.
 
 예시:
-![Insertion Sort]](/assets/img/insertion_sort.png)
+
+![Insertion Sort](/assets/img/insertion_sort.png)
