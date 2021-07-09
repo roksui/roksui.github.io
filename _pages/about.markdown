@@ -1,6 +1,6 @@
 ---
-layout: page
-title: About
+layout: splash
+title: whoami
 permalink: /about/
 ---
 
