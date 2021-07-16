@@ -91,7 +91,7 @@ Base case에 도달하기 전까지 Input을 O(log n)번까지 밖에 반으로 
     \STATE right $\leftarrow S[\text{mid:}]$
 
     \STATE sortedLeft $\leftarrow$ MERGESORT(left)
-    \STATE sortedRight $\leftarrow MERGESORT(right)
+    \STATE sortedRight $\leftarrow$ MERGESORT(right)
 
     \STATE return MERGE(sortedLeft, sortedRight)
 \ENDPROCEDURE
