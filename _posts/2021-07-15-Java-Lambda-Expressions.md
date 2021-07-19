@@ -155,31 +155,31 @@ stateOwner.addStateListener(
 - Lambda Parameters
 람다식은 어떻게 보면 메소드이기 떄문에, 매개변수를 전달 받아서 어떠한 결과를 내놓는다. 이때, 매개변수들은 single method interface에 있는 메소드의 매개변수와 매칭되어야 한다. 위의 경우, 람다식의 매개변수는 onStateChange() 메소드의 매개변수와 매칭되어야 한다.
 
-    Zero Parameters
-    만약의 람다식과 매칭하려는 메소드가 매개변수를 받지 않는다면 다음과 같이 적을 수 있다.
-    {% highlight java %}
-    () -> System.out.println("Zero parameter lambda");
-    {% endhighlight %}
+Zero Parameters
+만약의 람다식과 매칭하려는 메소드가 매개변수를 받지 않는다면 다음과 같이 적을 수 있다.
+{% highlight java %}
+() -> System.out.println("Zero parameter lambda");
+{% endhighlight %}
 
-    One Parameter
-    {% highlight java %}
-    param -> System.out.println("One parameter: " + param");
-    //(param) -> System.out.println("One parameter: " + param"); 매개변수가 한 개일 경우 괄호는 optional함
-    {% endhighlight %}
+One Parameter
+{% highlight java %}
+param -> System.out.println("One parameter: " + param");
+//(param) -> System.out.println("One parameter: " + param"); 매개변수가 한 개일 경우 괄호는 optional함
+{% endhighlight %}
 
-    Multiple Parameters
-    {% highlight java %}
-    (p1, p2) -> System.out.println("Multiple parameters: " + p1 + ", " + p2);
-    {% endhighlight %}
+Multiple Parameters
+{% highlight java %}
+(p1, p2) -> System.out.println("Multiple parameters: " + p1 + ", " + p2);
+{% endhighlight %}
 
-    var Parameter Types from Java 11
-    Java 10에서 지역변수 타입 추론을 위해 소개된 var 키워드가 Java 11부터는 람다식에서 매개변수의 타입으로 쓸 수 있다.
+var Parameter Types from Java 11
+Java 10에서 지역변수 타입 추론을 위해 소개된 var 키워드가 Java 11부터는 람다식에서 매개변수의 타입으로 쓸 수 있다.
     
-    {% highlight %}
-    Function<String, String> toLowerCase = (var input) -> input.toLowerCase();
-    {% endhighlight %}
+{% highlight java %}
+Function<String, String> toLowerCase = (var input) -> input.toLowerCase();
+{% endhighlight %}
     
-    여기서 input에 대한 타입은 String으로 추론될 것이다. 왜냐하면 변수의 타입 선언은 Function<String, String>으로 되어있기 때문에 Function의 매개변수 타입과 리턴 타입이 String이다.
+여기서 input에 대한 타입은 String으로 추론될 것이다. 왜냐하면 변수의 타입 선언은 Function<String, String>으로 되어있기 때문에 Function의 매개변수 타입과 리턴 타입이 String이다.
 
 - Lambda Function Body
 람다식의 바디 부분은 -> 오른쪽에 위치한다. 또, 여러 줄이면 {}안에 넣어주면 된다.
@@ -228,68 +228,68 @@ boolean result = myComparator.compare(2, 5);
 
 - Variable Capture
 
-    Local Variable Capture
-    자바 람다식은 람다식 바디 밖에 선언된 지역변수 값을 캡쳐(참조)할 수 있다. 다음과 같은 single method interface를 보자.
+Local Variable Capture
+자바 람다식은 람다식 바디 밖에 선언된 지역변수 값을 캡쳐(참조)할 수 있다. 다음과 같은 single method interface를 보자.
 
-    {% highlight java %}
-    public interface MyFactory {
-        public String create(char[] chars);
-    }
-    {% endhighlight %}
+{% highlight java %}
+public interface MyFactory {
+    public String create(char[] chars);
+}
+{% endhighlight %}
 
-    MyFactory 인터페이스를 구현하는 람다식이 있다.
+MyFactory 인터페이스를 구현하는 람다식이 있다.
 
-    {% highlight java %}
-    MyFactory myFactory = (chars) -> {
-        return new String(chars);
-    };
-    {% endhighlight %}
+{% highlight java %}
+MyFactory myFactory = (chars) -> {
+    return new String(chars);
+};
+{% endhighlight %}
 
-    현재, 위 람다식은 chars만을 참조하고 있다. 하지만, 다음과 같이 바디 밖의 변수 또한 참조 가능하다.
+현재, 위 람다식은 chars만을 참조하고 있다. 하지만, 다음과 같이 바디 밖의 변수 또한 참조 가능하다.
 
-    {% highlight java %}
-    String myString = "Test";
+{% highlight java %}
+String myString = "Test";
 
-    MyFactory myFactory = (chars) -> {
-        return myString + ":" + new String(chars);
-    };
-    {% endhighlight %}
+MyFactory myFactory = (chars) -> {
+    return myString + ":" + new String(chars);
+};
+{% endhighlight %}
 
-    이러한 참조는 참조하려는 변수가 "effectively final"할 때만 가능하다. 즉, 변수값이 한 번 대입되면 바뀌지 않는 다는 전제 하에만 가능하다. 만약 myString 값이 나중에 바꼈다면, 컴파일러가 불만을 표시할 것이다.
+이러한 참조는 참조하려는 변수가 "effectively final"할 때만 가능하다. 즉, 변수값이 한 번 대입되면 바뀌지 않는 다는 전제 하에만 가능하다. 만약 myString 값이 나중에 바꼈다면, 컴파일러가 불만을 표시할 것이다.
 
-    Instance Variable Capture
+Instance Variable Capture
     
-    {% highlight java %}
-    public class EventConsumerImpl {
-        private String name = "MyConsumer";
+{% highlight java %}
+public class EventConsumerImpl {
+    private String name = "MyConsumer";
 
-        public void attach(MyEvent Producer eventProducer) {
-            eventProducer.listen(e -> {
-                System.out.println(this.name);
-            });
+    public void attach(MyEvent Producer eventProducer) {
+        eventProducer.listen(e -> {
+            System.out.println(this.name);
+        });
         }
     }
-    {% endhighlight %}
+{% endhighlight %}
 
-    람다식에서 this.name을 참조하고 있다. 이는 람다식을 감싸고 있는 EventConsumerImpl 객체의 인스턴스 변수 name을 캡쳐한다. 또한, 캡쳐 후에 인스턴스 변수 값을 변경하는 것도 가능하다 - 이 변경은 람다식에도 반영된다.
+람다식에서 this.name을 참조하고 있다. 이는 람다식을 감싸고 있는 EventConsumerImpl 객체의 인스턴스 변수 name을 캡쳐한다. 또한, 캡쳐 후에 인스턴스 변수 값을 변경하는 것도 가능하다 - 이 변경은 람다식에도 반영된다.
 
-    this의 시멘틱과 관련해서 람다식과 익명 인터페이스 구현의 차이점이 존재한다. 익명 인터페이스 구현은 자신의 인스턴스 변수를 가질 수 있고 이는 this를 통해 참조할 수 있다. 하지만, 람다식은 자신의 인스턴스 변수를 가질 수 었다. 따라서 this는 항상 람다식을 감싸는 객체를 가르킨다.
+this의 시멘틱과 관련해서 람다식과 익명 인터페이스 구현의 차이점이 존재한다. 익명 인터페이스 구현은 자신의 인스턴스 변수를 가질 수 있고 이는 this를 통해 참조할 수 있다. 하지만, 람다식은 자신의 인스턴스 변수를 가질 수 었다. 따라서 this는 항상 람다식을 감싸는 객체를 가르킨다.
 
-    Static Variable Capture
-    람다식은 static 변수도 캡쳐할 수 있다. static 변수는 package scoped거나 public이면 자바 어플리케이션 어디에서나 접근할 수 있기 떄문에 놀랍지 않은 사실이긴하다.
+Static Variable Capture
+람다식은 static 변수도 캡쳐할 수 있다. static 변수는 package scoped거나 public이면 자바 어플리케이션 어디에서나 접근할 수 있기 떄문에 놀랍지 않은 사실이긴하다.
 
-    {% highlight java %}
-    public class EventConsumerImpl {
-        private static String someStaticVar = "Some text";
+{% highlight java %}
+public class EventConsumerImpl {
+    private static String someStaticVar = "Some text";
 
-        public void attach(MyEventProducer eventProducer) {
-            eventProducer.listen(e -> {
-                System.out.println(someStaticVar);
-            });
-        }
+    public void attach(MyEventProducer eventProducer) {
+        eventProducer.listen(e -> {
+            System.out.println(someStaticVar);
+        });
     }
-    {% endhighlight %}
-    인스턴스 변수처럼 static 변수값도 람다가 캡쳐한 후에 바뀔 수 있다.
+}
+{% endhighlight %}
+인스턴스 변수처럼 static 변수값도 람다가 캡쳐한 후에 바뀔 수 있다.
 
 - Method References as Lambdas
 람다식이 오로지 전달받은 매개변수를 사용하여 다른 메소드를 부르는 일만 한다면 좀 더 간결하게 적을 수 있는 방법이 있다.
@@ -315,98 +315,98 @@ MyPrinter myPrinter = System.out::println;
 
 참조할 수 있는 메소드 종류를 알아보자.
 
-    Static Method References
-    참조할 수 있는 가장 쉬운 메소드는 static 메소드이다.
+Static Method References
+참조할 수 있는 가장 쉬운 메소드는 static 메소드이다.
         
-    {% highlight java %}
-    public interface Finder {
-        public int find(String s1, String s2);
+{% highlight java %}
+public interface Finder {
+    public int find(String s1, String s2);
+}
+{% endhighlight %}
+
+다음은 우리가 참조하고자 하는 static 메소드이다.
+
+{% highlight java %}
+public class MyClass {
+    public static int doFind(String s1, String s2) {
+        return s1.lastIndexOf(s2);
     }
-    {% endhighlight %}
+}
+{% endhighlight %}
 
-    다음은 우리가 참조하고자 하는 static 메소드이다.
+그리고 우리는 람다식을 통해 다음과 같이 static 메소드를 참조할 수 있다.
 
-    {% highlight java %}
-    public class MyClass {
-        public static int doFind(String s1, String s2) {
-            return s1.lastIndexOf(s2);
-        }
+{% highlight java %}
+Finder finder = MyClass::doFind;
+{% endhighlight %}
+
+NOTE: Finder.find()의 매개변수와 MyClass.doFind()의 매개변수가 매칭이 되기 때문에 Finder.find()를 구현하는 람다식을 만들어 MyClass.doFind()를 참조가 가능하게 되는 것이다.
+
+Parameter Method Reference
+람다식 매개변수의 메소드를 참조하는 것도 가능하다.
+
+        
+{% highlight java %}
+public interface Finder {
+    public int find(String s1, String s2) {
     }
-    {% endhighlight %}
+}
+{% endhighlight %}
 
-    그리고 우리는 람다식을 통해 다음과 같이 static 메소드를 참조할 수 있다.
+위 인터페이스는 s1에서 s2를 검색할 수 있는 기능을 가지고, 다음과 같은 람다식 인터페이스 구현을 할 수 있다.
+        
+{% highlight java %}
+// 아래 두개 식은 동일한 결과를 가진다.
+Finder finder = String::indexOf;
+Finder finder = (s1, s2) -> s1.indexOf(s2); 
+{% endhighlight %}
 
-    {% highlight java %}
-    Finder finder = MyClass::doFind;
-    {% endhighlight %}
+NOTE: 컴파일러는 참조한 메소드를 첫번째 매개변수에 대하여 참조하고, 두번째 매개변수를 참조 메소드의 매개변수로 사용한다.
 
-    NOTE: Finder.find()의 매개변수와 MyClass.doFind()의 매개변수가 매칭이 되기 때문에 Finder.find()를 구현하는 람다식을 만들어 MyClass.doFind()를 참조가 가능하게 되는 것이다.
+Instance Method References
+인스턴스 메소드 참조 또한 가능하다.
+        
+{% highlight java %}
+public interface Deserializer {
+    public int deserialize(String v1);
+}
+{% endhighlight %}
 
-    Parameter Method Reference
-    람다식 매개변수의 메소드를 참조하는 것도 가능하다.
+이 인터페이스는 String을 int로 deserialize해주는 컴포넌트다.
+다음과 같은 StringConverter 클래스를 보자.
 
         
-    {% highlight java %}
-    public interface Finder {
-        public int find(String s1, String s2) {
-        }
+{% highlight java %}
+public class StringConverter {
+    public int convertToInt(String v1) {
+        return Integer.valueOf(v1);
     }
-    {% endhighlight %}
+}
+{% endhighlight %}
 
-    위 인터페이스는 s1에서 s2를 검색할 수 있는 기능을 가지고, 다음과 같은 람다식 인터페이스 구현을 할 수 있다.
+convertToInt()는 Deserializer.deserialize와 같은 메소드 시그니쳐를 갖고 있다. 그렇기 때문에 StringConverter 인스턴스를 만들어 람다식을 통해 해당 인스턴스의 convertToInt() 메소드를 참조할 수 있다.
         
-    {% highlight java %}
-    // 아래 두개 식은 동일한 결과를 가진다.
-    Finder finder = String::indexOf;
-    Finder finder = (s1, s2) -> s1.indexOf(s2); 
-    {% endhighlight %}
+{% highlight java %}
+StringConverter stringConverter = new StringConverter();
+Deserializer des = stringConverter::convertToInt;
+{% endhighlight %}
 
-    NOTE: 컴파일러는 참조한 메소드를 첫번째 매개변수에 대하여 참조하고, 두번째 매개변수를 참조 메소드의 매개변수로 사용한다.
-
-    Instance Method References
-    인스턴스 메소드 참조 또한 가능하다.
+Constructor References
+마지막으로 클래스의 생성자도 참조할 수 있다. '클래스명::new'를 통해 가능하다.
         
-    {% highlight java %}
-    public interface Deserializer {
-        public int deserialize(String v1);
-    }
-    {% endhighlight %}
+{% highlight java %}
+public interface Factory {
+    public String create(char[] val);
+}
+{% endhighlight %}
 
-    이 인터페이스는 String을 int로 deserialize해주는 컴포넌트다.
-    다음과 같은 StringConverter 클래스를 보자.
-
+이 인터페이스의 create 메소드는 String 클래스의 생성자 중 하나의 시그니쳐와 매칭된다. 따라서 해당 생성자는 람다식으로 사용 가능하다.
         
-    {% highlight java %}
-    public class StringConverter {
-        public int convertToInt(String v1) {
-            return Integer.valueOf(v1);
-        }
-    }
-    {% endhighlight %}
-
-    convertToInt()는 Deserializer.deserialize와 같은 메소드 시그니쳐를 갖고 있다. 그렇기 때문에 StringConverter 인스턴스를 만들어 람다식을 통해 해당 인스턴스의 convertToInt() 메소드를 참조할 수 있다.
-        
-    {% highlight java %}
-    StringConverter stringConverter = new StringConverter();
-    Deserializer des = stringConverter::convertToInt;
-    {% endhighlight %}
-
-    Constructor References
-    마지막으로 클래스의 생성자도 참조할 수 있다. '클래스명::new'를 통해 가능하다.
-        
-    {% highlight java %}
-    public interface Factory {
-        public String create(char[] val);
-    }
-    {% endhighlight %}
-
-    이 인터페이스의 create 메소드는 String 클래스의 생성자 중 하나의 시그니쳐와 매칭된다. 따라서 해당 생성자는 람다식으로 사용 가능하다.
-        
-    {% highlight java %}
-    // 아래 두개의 식이 같은 결과를 같는다.
-    Factory factory = String::new;
-    Factory factory = chars -> new String(chars);
-    {% endhighlight %}
+{% highlight java %}
+// 아래 두개의 식이 같은 결과를 같는다.
+Factory factory = String::new;
+Factory factory = chars -> new String(chars);
+{% endhighlight %}
 
 출처
 - http://tutorials.jenkov.com/java/lambda-expressions.html
