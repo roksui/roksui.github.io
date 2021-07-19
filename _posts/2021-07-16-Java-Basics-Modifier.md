@@ -95,6 +95,133 @@ class Test {
 
 3) Static Methods
 메소드가 static으로 선언되면 static 변수와 마찬가지로 클래스의 객체에 대한 참조 없이도 접근이 가능하지만 몇 가지 제한사항이 다음과 같이 존재한다.
-- static 메소드는 다른 
+- static 메소드는 다른 static 메소드만 직접 호출할 수 있다.
+- static 메소드는 다른 static 데이터에만 직접 접근할 수 있다.
+- static 메소드는 this나 super를 참조할 수 없다.
+
+{% highlight java %}
+class Test {
+    static int a = 10;
+    int b = 20;
+
+    static void m1() {
+        a = 20;
+        System.out.println("from m1");
+
+        b = 10; // compilation error; cannot make a static reference to non-static field
+
+        m2(); // compilation error; cannot make a static reference to non-static method
+
+        System.out.println(super.a) // compilation error; cannot user super in a static context
+    }
+
+    void m2() {
+        System.out.println("from m2");
+    }
+
+    public static void main(String[] args) {
+        // main method
+    }
+}
+{% endhighlight %}
+
+### static 변수/메소드는 언제 사용하는가?
+
+모든 객체에게 동일하게 적용되는 속성이 있을 경우 static 변수를 사용한다. 예를 들어, Student 클래스에서, 모든 학생이 같은 대학교 이름을 공유한다면 static 변수를 사용할 것이다. 그리고 static 변수를 변경하기 위해 static 메소드를 사용한다.
+
+다음과 같은 예시를 들어보자.
+
+{% highlight java %}
+class Student {
+    String name;
+    int rollNo;
+
+    static String collegeName;
+    static int counter = 0;
+
+    public Student(String name) {
+        this.name = name;
+        this.rollNo = setRollNo();
+    }
+
+    static int setRollNo() {
+        counter++;
+        return counter;
+    }
+
+    static void setCollegeName(String name) {
+        collegeName = name;
+    }
+
+    void getStudentInfo() {
+        System.out.println("name: " + this.name);
+        System.out.println("rollNo: " + this.rollNo);
+
+        System.out.println("collegeName: " + collegeName);
+    }
+}
+
+public class StaticDemo {
+    public static void main(String[] args) {
+        Student.setCollegeName("XYZ");
+
+        Student s1 = new Student("Alice");
+        Student s2 = new Student("Bob");
+
+        s1.getStudentInfo(); // Alice, 1, XYZ
+        s2.getStudentInfo(); // Bob, 2, XYZ
+    }
+}
+{% endhighlight %}
+
+4) Static Class
+Java에서 클래스를 static으로 만들 수 있다.
+Java에서는 클래스 안에 클래스를 정의할 수 있는데, 이를 중첩 클래스(nested classes)라고 한다. Top-level 클래스와 다르게, 그 안에 중첩 클래스는 static이 될 수 있다. Non-static 중첩 클래스는 inner class라고 부른다.
+
+- static nested class와 inner class의 차이점
+1. static nested class는 그 클래스의 outer class를 인스턴스화하지 않고도 인스턴스화할 수 있다.
+2. Inner class는 outer class의 static 및 non-static 멤버들에게 접근할 수 있다. Static class는 outer class의 static 멤버들에게만 접근할 수 있다.
+
+{% highlight java %}
+class OuterClass {
+    private static String msg = "Hello";
+
+    public static clss NestedStaticClass {
+
+        public void printMessage() {
+            System.out.println(msg); // if msg was non-static, there will be compilation error
+        }
+    }
+
+    public class InnerClass {
+        public void display() {
+            System.out.println(msg); // both static and non-static members of Outer class are accessible
+        }
+    }
+}
+
+class Main {
+    public static void main(String args[]) {
+        // Create instance of nested static class
+        OuterClass.NestedStaticClass printer = new OuterClass.NestedStaticClass();
+
+        // Call non-static method of nested static class
+        printer.printMessage();
+
+        // Create instance of inner class
+        OuterClass outer = new OuterClass();
+        OuterClass.InnerClass inner = outer.new InnerClass();
+
+        // Call non-static method of inner class
+        inner.display();
+
+        // Combine above steps in one
+        OuterClass.InnerClass innerObject = new OuterClass().new InnerClass();
+
+        innerObject.display();
+    }
+}
+{% endhighlight %}
+
 출처
 - https://www.geeksforgeeks.org/access-and-non-access-modifiers-in-java/
