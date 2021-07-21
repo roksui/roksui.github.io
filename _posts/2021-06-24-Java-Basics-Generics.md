@@ -56,7 +56,7 @@ public <T, G> List<G> fromArrayToList(T[] a, Function<T, G> mapperFunction) {
 
 예를 들어, upper bound를 두어, 메소드가 특정한 타입과 그것의 subclass들만 받을 수 있도록 하거나, 반대로 특정한 타입과 그것의 superclass들만 받는 lower bound를 둘 수 있다.
 
-upper bound를 두기 위해, 다음과 같이 extends 키워드를 사용할 수 있다. (lower bound는 super 키워드)
+upper bound를 두기 위해, 다음과 같이 extends 키워드를 사용할 수 있다. (lower bound는 super 키워드를 씀)
 
 {% highlight java %}
 public <T extends Number> List<T> fromArrayToList(T[] a) {
