@@ -17,12 +17,14 @@ You can find the source code for Jekyll at GitHub:
 
 [jekyll-organization]: https://github.com/jekyll -->
 
-## 서정록 (Jeong Rok Suh, aka Sui)
-2013.03 ~ 2020.08: B.S. Mathematics and Cyber Security (Interdisciplinary major), Chung-Ang University
+<br />
+## About me
+<b>서정록 (Jeong Suh, aka Sui)</b>
 
+2013.03 ~ 2020.08: B.S. Mathematics and Cyber Security (Interdisciplinary major), Chung-Ang University\
 2020.12 ~ Present: Software Developer, Sparrow(Fasoo)
 
-# Research Interests
+## Research Interests
 - Static/Dynamic Program Analysis
 - Cyber Security
 - Android Development
