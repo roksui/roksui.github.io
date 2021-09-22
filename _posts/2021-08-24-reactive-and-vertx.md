@@ -60,25 +60,35 @@ counterStream: ---1----2--3----4------5-->
 
 Reactive의 힘을 더 알아보기 위해, 더블 클릭 이벤트 스트림을 가지고 싶다고 가정하자. 그리고 새로운 스트림이 더블클릭 or 그 이상을 동일하게 처리하고 싶다고 여겨보자. 즉, 트리플클릭도 더블클릭으로 인식되어야 한다.
 
+Reactive Programming으로는 다음과 같이 4줄의 코드로 해결이 가능하다.
+그림으로 이해하면 좋다.
 
+![Click Stream](/assets/img/reactive_programming.png)
 
+회색 박스는 한 개의 스트림을 다른 하나로 변환시키는 함수이다.
 
+250밀리초의 'event silence'가 발생 할 때마다 (i.e. `buffer(stream.throttle(250ms)`) 클릭들을 리스트에 쌓아둔다. 결과적으로 리스트를 포함하는 스트림이 나오는데, 이에 `map()`을 호출하여 각각의 리스트를 그것의 크기로 매핑해준다. 마지막으로, `filter(x >= 2)`를 통해 더블클릭 이상의 것들만 남겨서 우리가 원하는 스트림을 얻을 수 있다. 그리고나서 이러한 이벤트를 listen하여 그에 맞는 대응을 할 수 있는 것이다.
 
+위 내용은 Adre Staltz가 Github에 올린 내용을 기반으로 한다. 그는 자신이 그동안 읽은 Reactive Programming에 대한 자료를 보며 신입 개발자들이 접근하기 힘든 부분이 많은 것을 느껴, 이를 좀 더 간결하고 명확하게 풀어서 설명을 해준다. JavaScript 예시를 포함한 원문을 읽고 싶다면 출처를 참고해도 좋겠다.
 
+## Vert.x
+Vert.x는 오픈소스이고 JVM위에서 동작하는 reactive한 polyglot 툴킷/플랫폼이다.
 
+이 문장을 한 번 자세히 알아보자.
 
+### Vert.x as a Toolkit or Platform
+1. Vert.x는 툴킷으로 사용될 수 있다. Standalone 자바 애플리케이션에 Vert.x를 넣어, Vertx 객체를 인스턴스화하고 메소드를 호출할 수 있다. 이럴 경우, 우리의 코드가 Vert.x를 컨트롤한다.
 
+2. Vert.x는 플랫폼으로도 사용될 수 있다. Command line으로 Vert.x를 실행한다. 이는 Java EE 애플리케이션 서버을 실행하는 방법과 비슷하다.
 
+### Vert.x is reactive
+Reactive한 애플리케이션은 서로에게 메시지나 이벤트를 전송하는 컴포넌트들로 구성되어 있다. 예를 들어, 채팅 애플리케이션이나 게임 서버에 적합하다.
 
-위 내용은 Adre Staltz가 Github에 올린 내용을 기반으로 한다. 그는 자신이 그동안 읽은 Reactive Programming에 대한 자료를 보며 신입 개발자들이 접근하기 힘든 부분이 많은 것을 느껴, 이를 좀 더 간결하고 명확하게 풀어서 설명을 해준다. 원문을 읽고 싶다면 출처를 참고해도 좋겠다.
+### Vert.x is polyglot
+Vert.x가 polyglot하다는 것은 Vert.x가 실행하게 하고 싶은 컴포넌트들(Verticles)을 여러가지 언어로 구현할 수 있다는 말이다. Vert.x는 Java, JavaScript, Ruby, Python와 Groovy 등의 언어를 실행할 수 있다.
 
+심지어 다른 언어로 작성된 verticle들을 하나의 애플리케이션에 배포할 수도 있다. 즉, 어떠한 태스크에 대해 가장 적합한 특정한 언어(예. 함수형 언어)를 선택할 수 있다.
 
-
-
-
-
-
-
-
-
-출처: https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
+## 출처 
+https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
+http://tutorials.jenkov.com/vert.x/index.html
