@@ -2,7 +2,7 @@
 title: Reactive Programming 및 Vert.x 소개
 ---
 
-## Reactive Programming이 뭐야?
+## Reactive Programming 소개
 
 **Reactive Programming is programming with asynchronous data streams.**
 즉, Reactive Programming은 비동기적 데이터 스트림으로 프로그래밍하는 것을 말한다. 
@@ -71,7 +71,7 @@ Reactive Programming으로는 다음과 같이 4줄의 코드로 해결이 가�
 
 위 내용은 Adre Staltz가 Github에 올린 내용을 기반으로 한다. 그는 자신이 그동안 읽은 Reactive Programming에 대한 자료를 보며 신입 개발자들이 접근하기 힘든 부분이 많은 것을 느껴, 이를 좀 더 간결하고 명확하게 풀어서 설명을 해준다. JavaScript 예시를 포함한 원문을 읽고 싶다면 출처를 참고해도 좋겠다.
 
-## Vert.x
+## Vert.x 소개
 Vert.x는 오픈소스이고 JVM위에서 동작하는 reactive한 polyglot 툴킷/플랫폼이다.
 
 이 문장을 한 번 자세히 알아보자.
