@@ -135,4 +135,4 @@ Recall the question we said at the start: "Is the string $s$ in $L$?" for suitab
 If we take $L$ to be $L(R)$, then this is called the membership problem for the RE $R$ (checks if $s \text{ matches } R$).
 
 ## Reference
-SydUniv COMP Lectures, 2021 September
+USYD COMP Lectures, 2021 September
