@@ -1,5 +1,5 @@
 ---
-title: [Python] Quitting Gracefully
+title: "[Python] Quitting Gracefully"
 ---
 
 ## 개요
