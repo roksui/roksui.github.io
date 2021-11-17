@@ -31,3 +31,6 @@ Java 6 HotSpot VM 이후 부터는 compressed oop라는 기능이 추가되어 (
 추가로, Intel이나 AMD x64와 같은 플랫폼에서는 64-bit JVm은 추가적인 CPU 레지스터를 사용할 수 있어서 애플리케이션 성능이 향상될 수 있다. 추가 레지스터가 가용하다면 레지스터 스필링(register spilling)을 막아줄 수 있다. 레지스터 스필링은 CPU의 레지스터 수 보다 애플리케이션에 live state(i.e. 변수)가 더 많을 경우에 발생한다. 레지스터 스필링이 발생하면 몇몇의 live state는 CPU 레지스터에서 메모리로 'spilled' 되어야 한다. 따라서 레지스터 스필링을 피하면 애플리케이션이 더 빠르게 동작할 수 있는 것이다.
 
 TBD...
+
+## 출처
+Java Performance, Charlie Hunt, Binu John, 2012. 
