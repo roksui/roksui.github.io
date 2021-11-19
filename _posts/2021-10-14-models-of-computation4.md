@@ -396,10 +396,11 @@ $$
 
 ### Why are they called "context-free"?
 The **Chomsky Hierarchy** consists of 4 classes of grammars, depending on the type of production rules that they allow.
-Type 0 (recursively enumerable) $z \rightarrow v$
-Type 1 (context-sensitive) $uAv \rightarrow uzv$
-Type 2 (context-free) $A \rightarrow z$
-Type 3 (regular) $A \rightarrow aB \text{ and } A \rightarrow a$
+
+Type 0 (recursively enumerable) $z \rightarrow v$<br>
+Type 1 (context-sensitive) $uAv \rightarrow uzv$<br>
+Type 2 (context-free) $A \rightarrow z$<br>
+Type 3 (regular) $A \rightarrow aB \text{ and } A \rightarrow a$<br>
 given that $u, v, z$ are string of variables and terminals and $z$ is not empty.
 
 --ADD IMAGE--
