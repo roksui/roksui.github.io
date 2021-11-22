@@ -52,5 +52,16 @@ JMX 기술의 instrumentation은 여러가지 방법으로 접근될 수 있다.
 
 커넥터는 관리자와 JMX agent 사이의 통신을 핸들링하는 관리자 측 인터페이스를 제공한다. 각 커넥터는 서로 다른 프로토콜을 통해 동일한 remote 관리 인터페이스를 제공한다. Remote 관리 애플리케이션이 이 인터페이스를 사용할 때, 그 애플리케이션은 프로토콜과 상관 없이 네트워크를 통해 투명하게 JMX agent에 연결할 수 있다. JMX 기술은 Java Remote Method Invocation (Java RMI)을 바탕으로 JMX 기술 instrumentation을 remote 애플리케이션에 내보낼 수 있는 표준 솔루션을 제공한다.
 
+## JVM 모니터링 및 관리
+JMX 기술을 통해 Java virtual machine(JVM)도 모니터링 및 관리할 수 있다.
+
+Java VM은 built-in instrumentation을 가지고 있어서 JMX 기술을 사용하여 모니터링될 수 있다. 이러한 built-in 관리 유틸리티는 주로 Java VM의 out-of-the-box 관리 툴이라고 불린다. JVM의 여러가지 측면을 모니터링 및 관리하기 위해 Java VM은 JMX specification을 따르는 모니터링 애플리케이션이 사용할 수 있는 플랫폼 MBean 서버와 특별한 MXBean들을 포함하고 있다.
+
+여기서 Platform MXBeans는 Java SE 플랫폼에서 제공되는 MXBeans로써 Java VM과 Java Runtime Environment(JRE)의 구성요소들을 모니터링 및 관리해준다. 각각의 MXBean은 Java VM functionality를 캡슐화(encapsulate)하고 있다, 예를 들어 class-loading system, just-in-time(JIT) compilation system, garbage collector 등등.
+
+이러한 MXBean들은 JMX specification을 따르는 모니터링 및 관리 툴을 통해 보여질 수 있다. 이러한 툴의 대표적인 예로 Java SE 플랫폼의 JConsole이 있다.
+
+JXM 기술을 구현한 표준 모니터링 및 관리 유틸리티들이 Java SE 플랫폼에 포함되어 있기 때문에, JMX API 코드를 쓸 필요 없이 out-of-the-box JMX 기술을 경험할 수 있다. 그저 Java 애플리케이션을 실행하여 JConsole로 모니터링하기만 하면 된다. 
+
 ## 출처
 Overview of the JMX Technology, The Java Tutorials, Java Documentation, Oracle
