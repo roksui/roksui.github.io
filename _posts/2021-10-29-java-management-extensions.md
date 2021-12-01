@@ -26,7 +26,7 @@ JMX 기술은 표준 커넥터(JMX connectors)라는 것을 정의하는데, 이
 
 즉, JMX는 큰 부담 없이 Java 애플리케이션을 관리할 수 있게 해준다.<br>
 JMX 기반 에이전트 (JMX 에이전트)는 대부분의 Java가 활성화된 디바이스에서 실행될 수 있다. 따라서 Java 애플리케이션은 그것의 디자인에 별 큰 영향을 받지 않고 관리될 수 있다. 애플리케이션은 managed object server만 추가시켜, 애플리케이션의 기능들을 한개 혹은 여러개의 MBean들의 형태로 이 object server에 등록하면 된다.
- 
+
 ## JMX의 아키텍쳐
 JMX 기술은 세 개의 레벨로 나뉠 수 있다.
 - Instrumentation
