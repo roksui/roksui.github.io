@@ -39,18 +39,18 @@ int gear = 1;
 변수의 데이터 타입은 그것이 가질 수 있는 값과 그것을 대상으로 할 수 있는 연산을 결정해준다.
 
 int와 함께 Java 프로그래밍 언어는 7개의 다른 *primitive data type(원시적 데이터 타입)*을 지원한다:
-- **byte**: byte 데이터 타입은 8-bit signed two's complement integer이다. 값 범위는 -128 ~ 127이다.
+- **byte**: byte 데이터 타입은 8-bit signed two's complement integer이다. 값 범위는 -128 ~ 127이다. byte 데이터 타입은 큰 배열을 사용할 때 메모리를 낭비하지 않기 위해 사용될 수 있다 - 실제로 메모리는 아끼는 것이 중요한 상황에서. 또한, int 대신 사용하여 그 제한된 범위로 인해 우리의 코드가 좀 더 명확해지면 사용할 수도 있다. 변수의 값 범위가 제한된다는 사실은 하나의 documentation 역할을 할 수도 있다. 
 
-- **short**: short 데이터 타입은 16-bit signed two's complement integer이다. 값 범위는 -32,768 ~ 32,767이다.
+- **short**: short 데이터 타입은 16-bit signed two's complement integer이다. 값 범위는 -32,768 - 32,767이다. byte와 비슷하게 똑같은 가이드라인이 적용된다 - 큰 배열에서 메모리 낭비를 줄이기 위해 사용된다.
 
-- **int**: int 데이터 타입은 32-bit signed two's complement integer이다. 값 범위는 $-2^{31} ~ 2^{31} - 1$이다.
+- **int**: int 데이터 타입은 32-bit signed two's complement integer이다. 값 범위는 $-2^{31}  2^{31} - 1$이다. Java SE8 이후에서는 int 데이터 타입을 unsinged 32-bit integer (값 범위: $0 \text{~} 2^{64} - 1$)를 나타내기 위해 사용할 수 있다. Integer 클래스를 사용하여 int 데이터 타입을 unsigned integer로 사용할 수 있다.
 
-- **long**: long 데이터 타입은 64-bit two's complement integer이다. signed long은 
+- **long**: long 데이터 타입은 64-bit two's complement integer이다. signed long의 값 범위는 $-2^{63} ~ 2^{63} - 1$이다. 
 
-- **float**:
+- **float**: float 데이터 타입은 single-precision 32-bit IEEE 754 floating point이다. 값 범위는 Java Language Specification의 [Floating-Point Types, Formats, and Values](https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.2.3)에 명시되어 있다.
 
-- **double**:
+- **double**: double 데이터 타입은 double-precision 64-bit IEEE 754 floating point이다. 값 범위는 float와 같이 위 링크에 명시되어있다. 소수점을 사용할 때 이 데이터 타입을 일반적으로 선택한다.
 
-- **boolean**:
+- **boolean**: boolean 데이터 타입은 두 개의 값이 가능하다: true 혹은 false. 이 데이터 타입은 한 개의 bit의 정보를 나타낸다.
 
-- **char**:
+- **char**: char 데이터 타입은 single 16-bit Unicode 캐릭터이다. 값 범위는 '\u0000'(or 0) ~ '\uffff' (or 65,535)이다.
