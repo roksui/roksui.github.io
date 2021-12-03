@@ -54,3 +54,103 @@ int와 함께 Java 프로그래밍 언어는 7개의 다른 *primitive data type
 - **boolean**: boolean 데이터 타입은 두 개의 값이 가능하다: true 혹은 false. 이 데이터 타입은 한 개의 bit의 정보를 나타낸다.
 
 - **char**: char 데이터 타입은 single 16-bit Unicode 캐릭터이다. 값 범위는 '\u0000'(or 0) ~ '\uffff' (or 65,535)이다.
+
+위의 8가지 primitive 데이터 타입에 더하여 Java 언어는 character string을 위한 특별한 지원을 해준다 - java.lang.String 클래스. Character string을 ""로 감싸면 자동으로 새로운 String 객체를 생성한다. String 객체는 *immutable(불변)*하다 - 한 번 생성되면 그 값이 바뀔 수 없다. String 클래스는 primitive 데이터 타입이 아니다. 하지만 언어차원에서 이런식으로 character string을 String 클래스로 만들 수 있는 특별 지원을 하기 때문에 primitive 데이터 타입으로 오해하기 쉽다.
+
+### Default Values
+필드를 선언할 시 항상 값을 부여해야하는 것은 아니다. 선언만 하고 초기화하지 않으면 컴파일러에 의해 적절한 디폴트 값이 부여된다. 일반적으로 말해 데이터 타입에 따라 0 혹은 null이 들어간다. 그러나 이러한 디폴트 값에 의존하는 것은 나쁜 프로그래밍 스타일이다.
+
+그러나, local variable에게는 컴파일러가 디폴트 값으로 자동 초기화해주지 않는다. Local variable을 선언할 때 초기화할 수 없다면, 그것을 사용하기 전에 꼭 값을 부여해줘야 한다. 초기화되지 않은 local variable을 사용하면 컴파일 타임 에러가 발생할 것이다.
+
+### Literals
+Primitive 데이터 타입을 초기화할 때는 new 키워드를 사용하지 않는 것을 알 것이다. **Primitive 타입은 언어의 빌트인된 특수 데이터 타입이다 - 클래스로부터 생성되는 객체가 아니다**. *Literal*은 고정 값에 대한 소스 코드 표현법이다. 리터럴은 계산 필요 없이 직접적으로 코드에 나타낼 수 있다. 다음과 같이 리터럴을 primitive 데이터 타입 변수에 부여할 수 있다.
+
+```java
+boolean result = true;
+char capitalC = 'C';
+byte b = 100;
+short s = 10000;
+int i = 100000;
+```
+
+### Integer Literals
+Integer literal은 L이나 l로 끝나면 long 타입이고, 그렇지 않으면 int 타입이다. 소문자 l 보다는, 대문자인 L을 쓰는 것을 추천한다 - 1과 l이 구분이 어려우니.
+
+byte, short, int, long 타입의 값들은 int 리터럴로 생성될 수 있다. int 값의 범위를 넘는 long 타입의 값은 long 리터럴로 만들 수 있다. Integer 리터럴은 다음의 넘버 시스템을 통해 나타낼 수 있다:
+- Decimal(10진법): Base 10 (0 ~ 9), 우리가 매일 쓰는 숫자
+- Hexadecimal(16진법): Base 16 (0 ~ 9, A ~ F)
+- Binary(2진법): Base 2 (0, 1), Java SE 7 이후부터 가능
+
+범용 프로그래밍에서는 거의 decimal system만 볼 것이다. 그러나 만약 다른 넘버 시스템을 사용한다면 다음과 같은 syntax를 사용한다. Prefix 0x는 hexadecimal, 0b는 binary를 나타낸다.
+
+```java
+// The number 26, in decimal
+int decVal = 26;
+// The number 26, in hexadecimal
+int hexVal = 0x1a;
+// The number 26, in binary
+int binVal = 0b11010;
+```
+
+### Floating-Point Literals
+Floating-point literal은 F나 f로 끝날 경우 float 타입이고, 만약 D나 d로 끝나면 double 타입이다.
+
+이러한 floating-point 타입은 E나 e (scientific notation), F나 f(32-bit float literal), 혹은 D나 d(64-bit double literal)를 사용하여 나타낼 수 있다. D나 d가 디폴트이고, 컨벤션에의해 따로 표시하지 않는다.
+
+```java
+double d1 = 123.4;
+// same value as d1, but in scientific notation
+double d2 = 1.234e2;
+float f1 = 123.4f;
+```
+
+### Character and String Literals
+char와 String 타입의 리터럴은 Unicode (UTF-16) 캐릭터를 포함할 수도 있다. 에디터나 파일 시스템이 이를 허용한다면, 그 캐릭터를 코드에 바로 사용할 수 있다. 그렇지 않다면 '\u0108' (capital C with circumflex), "S\u00ED Se\u00F1or" (스페인어 Si Señor)와 같이 "Unicode escape"를 사용할 수 있다. char 리터럴에 대해서는 'single quote'를 쓰고, String 리터럴에 대해서는 "double quotes"를 쓴다. Unicode escape 시퀀스는 char이나 String 리터럴 외에도 필드 이름과 같이 프로그램의 다른 부분에서도 사용될 수 있다.
+
+Java 언어에서도 char와 String 리터럴에 대한 몇 가지 특수 escape 시퀀스를 제공한다: \b (backspace), \n (line feed), \f (form feed), \r (carriage return), \\" (double quote), \\' (single quote), 그리고 \\\\ (backslash)
+
+또, reference 타입에 대한 값으로 특수하게 사용할 수 있는 null 리터럴이 있다. null은 primitive 타입 변수를 제외한 그 어떠한 변수에도 부여 가능하다. null 값의 존재를 테스트하는 것 외에는 null을 크게 사용할 곳은 없다. 따라서 null은 주로 어떠한 객체가 사용될 수 없음을 나타내는 용도로 많이 쓰인다.
+
+마지막으로 *class literal*이라는 특수한 리터럴 종류가 있다. 이는 type 이름에 ".class"를 붙여서 만들 수 있다. 예를 들어 String.class. 이 때, String.class 리터럴은 String 타입을 나타내는 Class 타입의 인스턴스이다.
+
+### Using Underscore Characters in Numeric Literals
+Java SE 7 이후 부터는 숫자 리터럴에서 언더스코어 캐릭터가 숫자들 사이에 몇개든지 존재할 수 있다. 이 기능을 통해 숫자 리터럴에서 숫자를 그룹으로 나눌 수도 있어 코드의 가독성이 좋아진다.
+
+예를 들어 만약 우리의 코드가 긴 숫자를 포함한다면 언더스코어를 사용하여 숫자를 3개의 그룹으로 나눌 수 있을 것이다 - 콤마, 스페이스 등의 분리자를 사용하듯이.
+
+다음의 여러가지 같은 예시를 보자.
+
+```java
+long creditCardNumber = 1234_5678_9043_2313L;
+long socialSecurityNumber = 999_99_9928L;
+float pi = 3.14_15F;
+long hexBytes = 0xFF_EC_DE_5E;
+long hexWords = 0xCAFE_BABE;
+long maxLong = 0x7fff_ffff_ffff_ffffL;
+byte nybbles = 0b0010_0101;
+long bytes = 0b11010010_01101001_10010100_10010010;
+```
+
+**NOTE**: 언더스코어는 다음과 같은 경우로는 사용될 수 없다.
+
+```java
+// Invalid: cannot put underscores adjacent to a decimal point
+float pi1 = 3_.1415F;
+float pi2 = 3._1415F;
+// Invalid: cannot put underscores prior to an L suffix
+long socialSecurityNumber1 = 999_99_9999_L;
+// Invalid: cannot put underscores at the end of a literal
+int x2 = 52_;
+// Invalid: cannot put underscores in the 0x radix prefix
+int x4 = 0_x52;
+// Invalid: cannot put underscores at the beginning of a number
+int x 5 = 0x_52;
+// Invalid: cannot put underscores at the end of a number
+int x7 = 0x52_;
+```
+
+다음과 같이 언더스코어를 여러개 붙여도 decimal literal이며 허용된다.
+```java
+int x3 = 5_____2;
+System.out.println(x3 / 2); // prints 26 because x3 is 52
+```
