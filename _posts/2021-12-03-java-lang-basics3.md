@@ -10,25 +10,58 @@ title: "Java - Language Basics: Operators"
 
 같은 우선순위를 가질 경우, 대입 연산자는 right to left로 연산되고, 나머지는 left to right으로 연산된다.
 
-| Operators                | Precedence                             |
-| ------------------------ | -------------------------------------- |
-| postfix                  | expr++ expr--                          |
-| unary                    | ++expr --expr +expr -expr ~ !          |
-| multiplicative           | * / %                                  |
-| additive                 | + -                                    | 
-| shift                    | << >> >>>                              |
-| relational               | < > <= >= instanceof                   |
-| equality                 | == !=                                  |
-| bitwise AND              | &                                      |
-| bitwise exclusive OR     | ^                                      |
-| bitwise inclusive OR     | |                                      |
-| logical AND              | &&                                     |
-| logical OR               | ||                                     |
-| ternary                  | ? :                                    |
-| assignment               | = += -= *= /= %= &= ^= |= <<= >>= >>>= |
+| Operators                | Precedence                              |
+| ------------------------ | --------------------------------------- |
+| postfix                  | expr++ expr--                           |
+| unary                    | ++expr --expr +expr -expr ~ !           |
+| multiplicative           | * / %                                   |
+| additive                 | + -                                     | 
+| shift                    | << >> >>>                               |
+| relational               | < > <= >= instanceof                    |
+| equality                 | == !=                                   |
+| bitwise AND              | &                                       |
+| bitwise exclusive OR     | ^                                       |
+| bitwise inclusive OR     | \|                                      |
+| logical AND              | &&                                      |
+| logical OR               | \|\|                                    |
+| ternary                  | ? :                                     |
+| assignment               | = += -= *= /= %= &= ^= \|= <<= >>= >>>= |
 
-연산자에 대해서는 모든 것을 다루지 않고, 새롭게 알게되거나 알면 좋을 만한 것들을 기록하겠다.
+연산자 우선순위에 대해 공부하면서 한 가지 의문이 들었다. 본 테이블을 참조한 오라클 공식 문서에서는 postfix 연산자가 prefix 연산자보다 우선순위가 높다고 말한다.
 
+그럼, postfix 연산자와 prefix 연산자가 하나의 식에 있을 때는 무엇이 먼저 연산(evaluate)되어야 하는가?
+
+라는 의문이 생겼는데, 문서에서는 분명히 "우선순위가 높은 연산자가 먼저 연산된다"고 말한다. 그럼 다음과 같은 예시를 생각해보자.
+
+```java
+int n = 1;
+System.out.println(--n + n++);
+```
+
+물론, 서비스를 개발할 때 이런식으로 코딩할 일은 없어야 겠지만, 아카데믹적인 이유로 한 번은 생각해볼만 한 것 같다.
+
+내가 생각한 부분은 이렇다:
+- postfix 증감 연산자가 우선순위가 높으므로, 먼저 식은 `--n + 1`로 연산되고, n은 2로 증가한다.
+
+- 그 후, prefix 증감 연산자가 우선순위가 높으므로, 식은 `1 + 1`이 되므로 2가 출력될 것이다.
+
+- 그러나 출력 결과는 0으로 나온다.
+
+어떠한 부분에서 내가 잘못 생각하고 있을까? 생각해보았다.
+
+Java Language Specification(JLS)에 의하면 일단 확실한 부분은, 식이 주어졌을 때, 각 피연산자(operand)들은 left to right으로 evaluate된다. 그래서 위와 같은 경우도 --n이 먼저 연산되고, 그후에 n++이 되고 더해지는 순서인 것이다 - 즉, 위 식은 `0 + 0`으로 연산되는 것이다.
+
+그럼 우선순위라는건 왜 존재하는걸까? 위에서 말하는 연산자 우선순위는 left to right으로 계산을 하기 전에, 식을 파싱하여(괄호를 매기는 것) 계산될 것을 준비하는 과정으로 볼 수 있다.
+
+예를 들어, `i = 2`이면, `i+i++`는 연산자 우선순위에 의해 `(i+i)++`가 아닌 `i+(i++)`로 파싱되어 `2 + 2 = 4`가 될 것이다.
+
+또, `i+++i`는 `(i++)+i`가 되어 `2 + 3 = 5`가 될 것이다. postfix가 prefix보다 우선순위가 높기 때문에 `i+(++i)`로 파싱되지 않고 말이다.
+
+`i+++++i`의 경우에, 우선순위를 고려하면 `((i++)++)+i`가 된다. 하지만 이는 컴파일 에러를 발생시킨다. 왜냐하면 postfix 연산자는 변수에 적용되는데 값에 적용하고 있기 때문이다. 만약 postfix와 prefix가 동일한 우선순위를 가졌다면, `(i++)+(++i)`로 파싱되어 컴파일 에러가 안나고 `2 + 4 = 6`가 연산될 것이다.
+
+따라서 postfix와 prefix의 우선순위가 다른 것에 대한 증명이 된 것이다. 그리고, 기억해야 할 것은, **연산자 우선순위는 파싱을 어떻게 할지를 결정해주는 룰이고, 파싱이 된 후에 실제로 evaluation(연산)은 왼쪽에서 오른쪽 방향으로 수행된다**는 점이다.
+
+정확한 것은 Java 설계자들한테 물어봐야겠지만, JLS에서는 연산자 우선순위를 직접적으로 명시하진 않고, "Precedence among operators is managed by a hierarchy of grammar productions"라고 말한다.
 
 ### Conditional 연산자
 &&와 || 연산자는 두 개의 boolean 피연산자에게 Conditional-AND와 Conditional-OR 연산을 수행한다. 이 연산자들은 "short-circuiting" 특성을 갖는다 - 필요시에만 두 번째 피연산를 연산한다.
