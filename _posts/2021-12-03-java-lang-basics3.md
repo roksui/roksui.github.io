@@ -120,7 +120,7 @@ class Main {
 
 - Bitwise ^ 연산자는 bitwise exclusive OR 연산을 수행한다.
 
-- Bitwise | 연산자는 bitwise inclusive OR 연산을 수행한다.
+- Bitwise \| 연산자는 bitwise inclusive OR 연산을 수행한다.
 
 다음 예제는 bitwise AND 연산자를 사용하여 2를 standard output에 출력한다.
 
