@@ -49,7 +49,7 @@ System.out.println(--n + n++);
 
 어떠한 부분에서 내가 잘못 생각하고 있을까? 생각해보았다.
 
-Java Language Specification(JLS)에 의하면 일단 확실한 부분은, 식이 주어졌을 때, 각 피연산자(operand)들은 left to right으로 evaluate된다. 그래서 위와 같은 경우도 --n이 먼저 연산되고, 그후에 n++이 되고 더해지는 순서인 것이다 - 즉, 위 식은 `0 + 0`으로 연산되는 것이다.
+Java Language Specification(JLS)에 의하면 일단 확실한 부분은, 식이 주어졌을 때, 각 피연산자(operand)들은 left to right으로 evaluate된다. 그래서 위와 같은 경우도 `--n`이 먼저 연산되고, 그후에 `n++`이 되고 더해지는 순서인 것이다 - 즉, 위 식은 `0 + 0`으로 연산되는 것이다.
 
 그럼 우선순위라는건 왜 존재하는걸까? 위에서 말하는 연산자 우선순위는 left to right으로 계산을 하기 전에, 식을 파싱하여(괄호를 매기는 것) 계산될 것을 준비하는 과정으로 볼 수 있다.
 
@@ -98,6 +98,7 @@ Java 언어에서는 integral 타입(integer 값을 갖는 타입): byte, short,
   - -8의 경우 negative sign을 가지기 떄문에, 빈 자리는 negative sign bit를 나타내는 1로 채워진다. -8 >> 2을 하면 1100이 되어 10진법으로 -2가 된다.
 
 - Unsigned right shift 연산자 ">>>"는 가장 왼쪽 자리에 sign bit 대신에 0을 밀어 넣는다.
+
 ```java
 class Main {
   public static void main(String[] args) {
@@ -113,7 +114,6 @@ class Main {
     System.out.println(Integer.toBinaryString(number2 >>> 2));    // 00111111111111111111111111111110
   }
 }
-
 ```
 
 - Bitwise & 연산자는 bitwise AND 연산을 수행한다.
@@ -136,6 +136,7 @@ class BitDemo {
 ```
 
 아래와 같은 bitwise AND 연산이 수행된다.
+
 ```
    00000000001111
 &  10001000100010
