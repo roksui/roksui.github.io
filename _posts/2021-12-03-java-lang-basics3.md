@@ -6,7 +6,7 @@ title: "Java - Language Basics: Operators"
 
 *Operator(연산자)*는 1개, 2개, 혹은 3개의 *operand(피연산자)*를 대상으로 특정 연산을 수행하여 결과를 리턴하는 특수 심볼이다.
 
-연산자들 사이에서 우선순위가 존재한다. 다음 테이블은 위에서부터 아래로 높은 우선순위를 가진 연산자 순서로 나열되어있다.
+연산자들 사이에서 연산 우선순위가 존재한다. 다음 테이블은 위에서부터 아래로 높은 우선순위를 가진 연산자 순서로 나열되어있다.
 
 같은 우선순위를 가질 경우, 대입 연산자는 right to left로 연산되고, 나머지는 left to right으로 연산된다.
 
@@ -28,7 +28,6 @@ title: "Java - Language Basics: Operators"
 | assignment               | = += -= *= /= %= &= ^= |= <<= >>= >>>= |
 
 연산자에 대해서는 모든 것을 다루지 않고, 새롭게 알게되거나 알면 좋을 만한 것들을 기록하겠다.
-
 
 ### Conditional 연산자
 &&와 || 연산자는 두 개의 boolean 피연산자에게 Conditional-AND와 Conditional-OR 연산을 수행한다. 이 연산자들은 "short-circuiting" 특성을 갖는다 - 필요시에만 두 번째 피연산를 연산한다.
