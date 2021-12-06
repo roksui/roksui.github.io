@@ -33,8 +33,6 @@ title: "Java - Language Basics: Operators"
 
 라는 의문이 생겼는데, 문서에서는 분명히 "우선순위가 높은 연산자가 먼저 연산된다"고 말한다. 그럼 다음과 같은 예시를 생각해보자.
 
-<<<<<<< HEAD
-=======
 ```java
 int n = 1;
 System.out.println(--n + n++);
@@ -65,7 +63,6 @@ Java Language Specification(JLS)에 의하면 일단 확실한 부분은, 식이
 
 정확한 것은 Java 설계자들한테 물어봐야겠지만, JLS에서는 연산자 우선순위를 직접적으로 명시하진 않고, "Precedence among operators is managed by a hierarchy of grammar productions"라고 말한다.
 
->>>>>>> acbcff5307e6d1658406473d7534e4ce45b344e3
 ### Conditional 연산자
 &&와 || 연산자는 두 개의 boolean 피연산자에게 Conditional-AND와 Conditional-OR 연산을 수행한다. 이 연산자들은 "short-circuiting" 특성을 갖는다 - 필요시에만 두 번째 피연산를 연산한다.
 
