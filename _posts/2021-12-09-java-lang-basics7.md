@@ -1,5 +1,5 @@
 ---
-title: "Java Language Basics: Enum Types"
+title: "Java - Language Basics: Enum Types"
 ---
 
 *Enum type*은 특수한 데이터 타입으로써, 해당 타입의 변수는 미리 정의된 constant들의 집합의 값들 중 하나가 될 수 있다.
