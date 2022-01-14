@@ -96,7 +96,7 @@ sun.misc.Launcher$ExtClassLoader@1085a85
 이러한 디폴트 클래스 로딩 메커니즘은 클래스가 한 번 method area로 로딩되고, 만약 .class 파일이 외부에서 변경되어도 이미 로딩된 .class 파일을 사용할 것이다. 만약 서버 애플리케이션을 중단하고 재시작하지않고 (그럴 경우 변경된 클래스 파일이 적용되겠지만), 실시간으로 업데이트된 .class 파일을 적용해줘야할 경우, 커스터마이징된 클래스 로더를 만드는 것도 하나의 방법이다. 다음과 같이 만들 수 있을 것이다.
 
 ```java
-public class CustomizedClassLoade extends ClassLoader {
+public class CustomizedClassLoader extends ClassLoader {
     public Class loadClass(String cname) throws ClassNotFoundException {
         // Check whether updated version of class is available or not.
         // If it is available, then load the updated version and return the corresponding class "Class" object.
