@@ -1,10 +1,10 @@
 ---
-title: "JVM and Class Loading (2)"
+title: "JVM Back to the Basics - Class Loaders"
 ---
 
 이전 글에서는 JVM의 구조와 그것의 구성요소 중 하나인 Class Loader sub-system의 역할을 알아보았다.
 
-이번 글에서는 클래스 로더(Class Loader)의 종류에 대해 알아보자. 
+이번 글에서는 클래스 로더(class Loader)의 종류에 대해 알아보자. 
 
 ## 개요
 Java에서 동적 로딩을 가능하게 해주는 메커니즘은 클래스 로더인데, 이는 Java dynamism의 토대 중 하나이다.
