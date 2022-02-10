@@ -40,7 +40,20 @@ Fabric 플랫폼은 네이티브 암호화폐를 필요로하지 않는 합의 �
 
 이러한 차별점들을 조금 더 세밀히 살펴보자.
 
-TBC...
+## Modularity
+Hyperledger Fabric은 모듈화된(modular) 아키텍처를 갖도록 설계되었다. 착탈식 합의이든 LDAP이나 OpenID Connect과 같은 착탈식 신원 관리 프로토콜이든, 키 관리 프로토콜 혹은 암호화 라이브러리든, 이 플랫폼은 다양한 엔터프라이즈 유즈 케이스 요구사항을 충족하도록 바닥부터 설계되었다.
+
+하이 레벨에서 보면 Fabric은 다음과 같은 모듈화된 요소들로 구성되어 있다:
+- 착탈식 *ordering service*는 트랜잭션의 순서에 따라 합의를 확립하고 peer들에게 블록들을 브로드캐스팅한다.
+- 착탈식 *membershipt service provider*는 네트워크에 있는 개체들을 암호화 방식의 신원과 매핑한다.
+- 선택 가능한 *peer-to-peer gossip service*는 ordering service를 통해 다른 peer들에게 블록 아웃풋을 퍼트린다.
+- 스마트 컨트랙트(chaincode)는 격리성을 위해 컨테이너 환경 (eg. Docker)에서 실행된다. 이는 표준 프로그래밍 언어로 작성될 수 있으나 원장 상태에 대한 직접적인 접근은 할 수 없다.
+- 원장은 다양한 DBMS를 지원할 수 있도록 설정될 수 있다.
+- 각 애플리케이션마다 착탈식 보증(endorsement) 및 검증(validation) 정책 시행 여부가 설정될 수 있다.
+
+블록체인 산업에서는 "모든 상황을 만족하는 블록체인은 없다"라는 의견에 대부분 동의한다. Hyperledger Fabric은 여러 가지 방법으로 설정되어 다양한 솔루션 요구사항 및 유즈 케이스를 충족시킬 수 있다.
+
+
 
 ## 출처
 https://hyperledger-fabric.readthedocs.io/en/release-2.2/whatis.html
