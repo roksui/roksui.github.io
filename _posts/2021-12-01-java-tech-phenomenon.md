@@ -1,5 +1,7 @@
 ---
 title: "The Java Technology Phenomenon"
+categories: 
+  - Java Basics
 ---
 
 ## Java 기초 시리즈를 시작하며

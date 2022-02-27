@@ -1,5 +1,7 @@
 ---
 title: "Java - Language Basics: Arrays"
+categories: 
+  - Java Basics
 ---
 
 ## Arrays

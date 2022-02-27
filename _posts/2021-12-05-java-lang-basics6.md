@@ -1,5 +1,7 @@
 ---
 title: "Java - Language Basics: Nested Classes"
+categories: 
+  - Java Basics
 ---
 
 원래는 이전 글에 Nested Class까지 다룰려고 하였으나, 해당 글의 양이 너무 많아질 것 같아, 따로 나누었다.

@@ -1,5 +1,7 @@
 ---
 title: "Java - Language Basics: Expressions, Statements, and Blocks"
+categories: 
+  - Java Basics
 ---
 
 코딩을 하며 너무나 당연하게 우리가 써왔던 요소들이지만 정확히 어떤 이름을 갖고 어떻게 구분되는지 알아보자.

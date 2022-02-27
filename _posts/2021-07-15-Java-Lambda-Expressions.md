@@ -1,5 +1,7 @@
 ---
 title: "Java - Lambda Expression"
+categories: 
+  - Java Basics
 ---
 
 ## What is it?

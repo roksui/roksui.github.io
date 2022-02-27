@@ -1,5 +1,7 @@
 ---
 title: "Java Generics"
+categories: 
+  - Java Basics
 ---
 
 ## 개요

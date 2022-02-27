@@ -1,6 +1,8 @@
 ---
 title: "Java - Language Basics: Primitive Data Types"
 use_math: true
+categories: 
+  - Java Basics
 ---
 
 본 글에서는 Java 프로그래밍 언어 자체의 요소들을 살펴볼 것이다. 하나도 빠트리지 않고 모든 디테일을 설명하기보다는, 그동안 헷갈렸지만 그냥 썼던 부분들, 그리고 그렇게 쓰이는 이유를 중점적으로 살펴보고자 한다. 

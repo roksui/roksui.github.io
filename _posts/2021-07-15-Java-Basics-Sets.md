@@ -1,5 +1,7 @@
 ---
 title: "Java - Sets"
+categories: 
+  - Java Basics
 ---
 
 ## Set Interface

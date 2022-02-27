@@ -1,5 +1,7 @@
 ---
 title: "Java Basics - Modifier"
+categories: 
+  - Java Basics
 ---
 
 ## What is a modifier?

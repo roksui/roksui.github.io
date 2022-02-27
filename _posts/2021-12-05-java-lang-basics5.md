@@ -1,5 +1,7 @@
 ---
 title: "Java - Language Basics: Classes and Objects"
+categories: 
+  - Java Basics
 ---
 
 이번 글에서는 Java의 핵심 요소인 클래스와 객체에 대해 알아보자. 압축시켜 노트를 하였으나, 그래도 여전히 내용은 많다.

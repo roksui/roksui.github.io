@@ -1,5 +1,7 @@
 ---
 title: "Java - Language Basics: Operators"
+categories: 
+  - Java Basics
 ---
 
 자, 이제 변수를 선언하고 초기화하는 것에 대해서는 알겠으니, 이것들로 무엇을 할지를 알아보자.
