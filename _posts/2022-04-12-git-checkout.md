@@ -69,15 +69,38 @@ git commit -a -m "Add a new line to the file"
 `git log --oneline`을 실행해보면 두번 째 커밋으로부터 새로운 커밋들이 파생된 것을 볼 수 있다. 그리고 `git log`는 이러한 커밋들의 이력을 커밋 시간 순서대로 보여준다.<br>
 **NOTE**: 디폴트로 `git log`를 하면 현재 브랜치를 기준으로 보여준다고 하였다. Detached HEAD 상태에서는 HEAD가 브랜치를 가리키는 상황이 아니지만, 커밋 이력은 보여진다. 
 
+![git-log-detached-head](/assets/img/git_log_detached_head.png)
+
 요약하자면 detached HEAD 상태는 깃에서 충분히 있을 수 있고 valid한 상태이다. 따라서 이 상태를 사용하여 커밋을 확인만 하거나 혹은 변경 사항을 만들어 적용할 수도 있다. 다음과 같은 상황 케이스로 나눠보자.
 
-시나리오 1: 실수로 왔다.
-만약 실수로 detached HEAD 상태로 왔다면, 즉, 특정 커밋으로 checkout을 잘못 했다면, 단순히 원래 있던 branch로 checkout을 해주면 된다. - `git checkout <branch-name>`
+**시나리오 1: 실수로 왔다.**
+만약 실수로 detached HEAD 상태로 왔다면, 즉, 특정 커밋으로 checkout을 잘못 했다면, 단순히 원래 있던 브랜치로 checkout을 해주면 된다. - `git checkout <branch-name>`
 
-시나리오 2: 테스트를 위한 변경 사항을 만들었지만 저장하고 싶지않다.
+**시나리오 2: 테스트를 위한 변경 사항을 만들었지만 저장하고 싶지않다.**
+Detached HEAD 상태가 된 후 몇 가지 커밋을 했다. 그러나 테스트 내용이 진전이나 가치가 없어 저장하고 싶지 않다. 그러면 시나리오1에서 한 것 처럼 원래의 브랜치로 checkout을 하면된다.<br>
+새로 뻗어나가는 타임라인의 변경 사항들은 현재 브랜치에 영향을 주지 않는다. 깃은 알아서 이러한 orphan이 된 커밋들을 garbage collect해준다.
 
+**시나리오 3: 테스트를 위한 변경 사항을 만들었고 저장하고 싶다.**
+만약 detached HEAD 상태에서 만든 변경 사항들을 유지하고 싶다면, 새로운 브랜치를 만들어서 checkout하면 된다. 새로운 브랜치는 detached HEAD에 들어가자마자 생성해도 되고, 커밋을 한 뒤에 생성해도 된다. 단, 원래 브랜치로 돌아가기 전에 새로운 브랜치를 만들어야만 변경 사항이 유지가 된다.
 
-시나리오 3: 테스트를 위한 변경 사항을 만들었고 저장하고 싶다.
+위에 가장 마지막 그림이 나타내는 상태에서 실험을 해보자.
+
+```bash
+git branch alt-history
+git checkout alt-history
+```
+
+**NOTE**: 위 두 개의 커맨드는 `git checkout -b alt-history`로 한번에 가능하다.
+
+![git-log-attached-head](/assets/img/git_log_attached_head.png)
+
+`git log --oneline`을 해보면 위에 로그랑 동일하다. 한 가지 다른 점은 브랜치의 이름이 마지막 커밋에 보여지는 것이다 - HEAD가 alt-history 브랜치를 가리키고 있다. 
+
+최종 레포지토리의 상태는 다음과 같다.
+
+![attached-head2](/assets/img/attached_head2.png)
+
+Detached HEAD에 대해서 알아봤다. 특정 커밋으로 돌아감으로 인해 HEAD가 detach되는 것은 절대 레포지토리가 잘못된 상태는 아니고, 조금 덜 일반적인(less usual) 상태에 있는 것이라고 생각할 수 있다. 심지어는 위에서 보았듯이 이러한 detached HEAD가 유용할 수도 있다.
 
 ## 출처
 https://git-scm.com/docs/git-checkout
