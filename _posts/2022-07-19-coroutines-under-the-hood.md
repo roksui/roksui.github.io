@@ -1,8 +1,6 @@
 ---
-title: "Git의 checkout에 대하여"
+title: "Coroutines: Under the hood"
 ---
-
-# Coroutines: Under the hood
 
 ## 개요
 프로그래밍에서 코루틴이라는 개념은 생각보다 오래되었다. 그러나 필자는 비교적 최근 Kotlin Coroutines를 사용하며 처음 코루틴이라는 개념을 알게되었고, 기존 Java의 Thread보다 가볍고 비용 효율적으로 사용할 수 있다는 장점으로 많이 사용해왔다. 본 글에서는 코루틴의 역사와 어떠한 장점을 위해 구상되고 사용되어 왔는지 좀 더 자세히 알아보고자 한다.
