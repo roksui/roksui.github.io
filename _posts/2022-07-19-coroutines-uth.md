@@ -114,6 +114,8 @@ fun someFunction() {
 
 위 코드에서 우리는 어떠한 API로부터 영화 데이터를 가져오려고 한다. 그러나 그러기 전에, 요청을 승인해주는 토큰이 필요하다. 안드로이드 애플리케이션의 맥락으로 위 코드가 Retrofit의 enqueue로 request를 전송한다고 가정해보자. Request의 응답은 콜백 함수로 처리된다. 위 로직에 따르면, `makeLogin()`의 응답을 알려면 콜백 함수가 필요하고, `loadMovies()`의 응답을 알려고 해도 콜백 함수가 필요하다. 만약 추가로 다른 request가 필요할 경우, 또 다른 콜백 함수가 필요할 것이다. 더욱 더 복잡한 로직이 필요할 경우, 우리는 흔히 말하는 콜백 헬(Callback Hell)로 접어들 수 있다.
 
+**NOTE**: Retrofit2의 enqueue는 내부적으로 OkHttpClient를 사용하여 request를 asynchronous하게 보낸다. 이 때, `Dispatcher`가 여러 개의 스레드를 생성하여, concurrent한 request를 보낼 수 있게 된다. 반면에 코루틴은 싱글 스레드로 함수를 suspend하고 resume하면서 concurrency를 보장할 수 있는 특징이 있다. 
+
 이러한 코드를 코루틴으로 변경해보자.
 
 먼저, `makeLogin()`과 `loadMovies()`를 suspend 함수로 만든다.
@@ -368,29 +370,29 @@ suspend fun setupMovies(completion: Continuation<Any?>) {
 	    ?: SetupMoviesStateMachine(completion)
 
     when (continuation.label) {
-       0 -> {
-          throwOnFailure(continuation.result)
-          makeLogin("someValue", "someValue", continuation)
-          continuation.label = 1
-       }
-       1 -> {
-          throwOnFailure(continuation.result)
-	      continuation.token = continuation.result as Token
-          loadMovies(continuation.token, continuation)
-          continuation.label = 2
-       }
-       2 -> {
-          throwOnFailure(continuation.result)
-	      continuation.movies = continuation.result as as List<Movie>
-          printMovies(continuation.movies as List<Movie>, continuation)
-          continuation.label = 3
-       }
-       3 -> {
-          throwOnFailure(continuation.result)
-          continuation.resume(Unit)
-       }
-       else -> throw IllegalStateException(...)
-   } 
+        0 -> {
+            throwOnFailure(continuation.result)
+            makeLogin("someValue", "someValue", continuation)
+            continuation.label = 1
+        }
+        1 -> {
+            throwOnFailure(continuation.result)
+            continuation.token = continuation.result as Token
+            loadMovies(continuation.token, continuation)
+            continuation.label = 2
+        }
+        2 -> {
+            throwOnFailure(continuation.result)
+            continuation.movies = continuation.result as as List<Movie>
+            printMovies(continuation.movies as List<Movie>, continuation)
+            continuation.label = 3
+        }
+        3 -> {
+            throwOnFailure(continuation.result)
+            continuation.resume(Unit)
+        }
+        else -> throw IllegalStateException(...)
+   }
 }
 ```
 
