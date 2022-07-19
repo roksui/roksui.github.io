@@ -144,7 +144,7 @@ fun someFunction() {
 
 Suspend 함수를 쓰도록 코드를 변경하였으니, 이전의 Retrofit의 Call과 enqueue대신 Deferred<> 혹은 suspend 구현체를 사용할 수 있다. 콜백 대신 suspend 함수로 코딩하니 더욱 깔끔하고 이해하기 쉬워졌다. `makeLogin()`, `loadMovies()`는 비동기 함수이고 몇 초 걸릴 수 있으나 동기 함수처럼 작성되있는 것이 특징이다.
 
-`makeLogin()`이 호출되면 launch의 익명 suspend 함수인 `{}`는 suspend될 것이고 `makeLogin()`이 끝나면 익명 함수는 다시 이어간다. `loadMovies()`의 경우도 마찬가지다. 만약 `loadMovies()`안에 또 다른 suspend 함수가 있다면, 비슷한 원리로 해당 함수가 끝날 때 까지 `loadMovies()`는 suspend될 것이다.
+`makeLogin()`이 호출되면 `launch`의 익명 suspend 함수인 `{}`는 suspend될 것이고 `makeLogin()`이 끝나면 익명 함수는 다시 이어간다. `loadMovies()`의 경우도 마찬가지다. 만약 `loadMovies()`안에 또 다른 suspend 함수가 있다면, 비슷한 원리로 해당 함수가 끝날 때 까지 `loadMovies()`는 suspend될 것이다.
 
 ### 코루틴 스코프
 코루틴을 실행시키기 위해서는 코루틴 스코프라는게 존재해야한다는 것을 위 예시를 통해 볼 수 있었다. 근데 코루틴 스코프가 정확히 무엇인가? 이름 그대로 코루틴의 스코프(범위)이다.
@@ -226,7 +226,7 @@ fun setupMovies(completion: Continuation<Any?>) {
     // Label 1: Resumes from makeLogin
     val movies = loadMovies(token)
 
-    // Label 2: Resume from loadMovies
+    // Label 2: Resumes from loadMovies
     printMovies(movies)
 
     // Label 3: Resumes from printMovies
@@ -237,7 +237,7 @@ fun setupMovies(completion: Continuation<Any?>) {
 `setupMovies()` 함수의 바이트코드를 디컴파일 해보면 다음과 같은 코드를 확인할 수 있다. (가독성을 위해 코틀린으로 작성하였다)
 
 ```kotlin
-suspend fun setupMovies(completion: Continuation<Any?>) {
+fun setupMovies(completion: Continuation<Any?>) {
     when (label) {
         0 -> {
             val token = makeLogin("abc123", "qwerty")
@@ -323,7 +323,7 @@ fun setupMovies(completion: Continuation<Any?>) {
 
 `setupMovies`가 시작되고, 만약 completion 인자가 `SetupMoviesStateMachine`이 아니라면, completion 인자를 넘겨 새로운 `SetupMoviesStateMachine` 객체를 생성하고, 만약 맞다면 그 completion 인자를 쓴다 - State Machine을 continuation 변수에 저장한다.
 
-`setupMovies`가 최초로 호출될 때, label은 0이다 (State Machine 정의 상 label 초기값). 따라서 switch문의 첫번 째 브랜치로 빠질 것이고, `makeLogin`함수가 호출될 것이다.
+`setupMovies`가 최초로 호출될 때, label은 0이다 (State Machine 정의 상 label 초기값). 따라서 when문의 첫번 째 브랜치로 빠질 것이고, `makeLogin`함수가 호출될 것이다.
 모든 suspend 함수에 대해 컴파일러는 Continuation 타입 인자를 추가하기 때문에, continuation을 `makeLogin`함수 실행 때 넘겨준다. 왜 continuation을 넘기냐면 `makeLogin`함수가 재게될 때, `invokeSuspend` 함수를 호출하여 자신의 result를 저장할 것인데, 이 result가 저장된 continuation으로 `setupMovies`를 실행할 수 있어야 하기 때문이다.
 
 첫 번째 브랜치에서 label을 1로 바꾸기 때문에 `invokeSuspend`가 `setupMovies`를 다시 호출하게 되면 두 번째 브랜치로 빠지게 될 것이다. 이 브랜치에서는 State Machine의 token 변수에 result 변수(Token)을 저장하고 이 token값과 continuation을 넘겨 `loadMovies`를 호출한다. 이 때 continuation을 다시 넘김으로써 `loadMovies`는 `invokeSuspend` 함수를 호출하여 자신의 result를 저장한 continuation으로 `setupMovies`의 다음 브랜치로 넘어갈 수 있게 된다. 세 번째 브랜치도 마찬가지인 방식으로 진행된다.
@@ -344,13 +344,13 @@ suspend fun setupMovies() {
 여기서 `println`함수는 suspend 함수가 아니기 때문에 네 번째 브랜치는 다음과 같이 된다.
 
 ```kotlin
-suspend fun setupMovies(completion: Continuation<Any?>) {
+fun setupMovies(completion: Continuation<Any?>) {
     val continuation = ...
 
     when (continuation.label) {
         ...
         3 -> {
-            println("Done)
+            println("Done")
             continuation.resume(Unit)
         }
         ...
@@ -360,14 +360,14 @@ suspend fun setupMovies(completion: Continuation<Any?>) {
 
 `continuation.resume()`이 호출되면 suspend 함수는 재게된다. `loadMovies`가 재게되어 `setupMovies`를 다시 호출한 것 처럼, `setupMovies` 또한 재게되어 다른 suspend 함수를 부를 수 있다.
 
-만약 위 전체 과정 중에 에러가 발생한다면 어떻게 처리될까? 단순하다. 우리는 단지 switch문의 각 브랜치에 한 줄의 에러 처리 코드만 추가해주면 된다.
+만약 위 전체 과정 중에 에러가 발생한다면 어떻게 처리될까? 단순하다. 우리는 단지 when문의 각 브랜치에 한 줄의 에러 처리 코드만 추가해주면 된다.
 
 ```kotlin
 suspend fun setupMovies(completion: Continuation<Any?>) {
     val continuation = completion as? SetupMoviesStateMachine 
 	    ?: SetupMoviesStateMachine(completion)
 
-    when(continuation.label) {
+    when (continuation.label) {
        0 -> {
           throwOnFailure(continuation.result)
           makeLogin("someValue", "someValue", continuation)
@@ -375,13 +375,13 @@ suspend fun setupMovies(completion: Continuation<Any?>) {
        }
        1 -> {
           throwOnFailure(continuation.result)
-	  continuation.token = continuation.result as Token
+	      continuation.token = continuation.result as Token
           loadMovies(continuation.token, continuation)
           continuation.label = 2
        }
        2 -> {
           throwOnFailure(continuation.result)
-	  continuation.movies = continuation.result as as List<Movie>
+	      continuation.movies = continuation.result as as List<Movie>
           printMovies(continuation.movies as List<Movie>, continuation)
           continuation.label = 3
        }
