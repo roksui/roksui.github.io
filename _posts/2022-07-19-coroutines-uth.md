@@ -3,12 +3,14 @@ title: "Coroutines: Under the hood"
 ---
 
 ## 개요
+
 프로그래밍에서 코루틴이라는 개념은 생각보다 오래되었다. 그러나 필자는 비교적 최근 Kotlin Coroutines를 사용하며 처음 코루틴이라는 개념을 알게되었고, 기존 Java의 Thread보다 가볍고 비용 효율적으로 사용할 수 있다는 장점으로 많이 사용해왔다. 본 글에서는 코루틴의 역사와 어떠한 장점을 위해 구상되고 사용되어 왔는지 좀 더 자세히 알아보고자 한다.
 
 ## 역사
+
 코루틴이라는 용어는 1958년 Melvin Edward Conway에 의해 처음 발표되었으며, 그는 어셈블리 프로그램에 이를 최초로 적용한 사람이다. 그 후 1963년 "Design of a Separable Transition-diagram Compiler"라는 글을 출판하여 분리가능성(separability)의 설계 속성을 가지는 Cobol 컴파일러에 대해 얘기하였다.
 
-Conway가 말하길, 
+Conway가 말하길,
 
 > "프로그램이 분리가능하다는 것은 특정한 제약에 의거하여 서로 소통하는 프로세싱 모듈로 분리될 수 있다는 것을 의미한다 - 각 모듈은 코루틴이 될 수 있다."
 
@@ -25,6 +27,7 @@ Conway가 말하길,
 코루틴은 협력적인(cooperative) 함수들을 의미한다 - Coroutine의 "Co"가 Cooperative를 의미한다. 그리고 함수들의 통제권은 OS가아닌 개발자에 의해 결정되고, 여러 개의 다른 스레드를 사용하는 효과를 단 하나의 스레드로도 낼 수도 있을 것이다. 그렇게 하기 위해, 통제권을 주는 함수의 exit point와 통제권을 받는 함수의 entry point가 기억된다. 코틀린 코루틴의 예시로 더 자세히 알아보자.
 
 ## Kotlin Coroutines
+
 Hello World 예시를 보자.
 
 ```kotlin
@@ -47,7 +50,7 @@ fun main() {
 
 아웃풋은 다음과 같다.
 
-```
+```text
 Hello
 World
 ```
@@ -86,6 +89,7 @@ fun main() {
 **NOTE**: 코루틴은 스레드와 동등하지 않다. 코루틴은 스레드 위에서 동작한다.
 
 ### Suspend 함수
+
 위에서 `launch`를 호출할 때 넘기는 익명 함수나 `delay` 함수를 suspend 함수라고 하였다. 코틀린에서는 함수를 suspendable하게 만드려면 fun 앞에 suspend 제어자만 붙여주면 된다. 이를 적음으로써 컴파일러에게 해당 함수는 suspend될 수 있고 나중에 resume될 수 있다는 것을 알려준다 - 즉, suspendable한 것이다.
 
 그럼 왜 굳이 suspend 함수를 쓰는걸까?
@@ -114,7 +118,7 @@ fun someFunction() {
 
 위 코드에서 우리는 어떠한 API로부터 영화 데이터를 가져오려고 한다. 그러나 그러기 전에, 요청을 승인해주는 토큰이 필요하다. 안드로이드 애플리케이션의 맥락으로 위 코드가 Retrofit의 enqueue로 request를 전송한다고 가정해보자. Request의 응답은 콜백 함수로 처리된다. 위 로직에 따르면, `makeLogin()`의 응답을 알려면 콜백 함수가 필요하고, `loadMovies()`의 응답을 알려고 해도 콜백 함수가 필요하다. 만약 추가로 다른 request가 필요할 경우, 또 다른 콜백 함수가 필요할 것이다. 더욱 더 복잡한 로직이 필요할 경우, 우리는 흔히 말하는 콜백 헬(Callback Hell)로 접어들 수 있다.
 
-**NOTE**: Retrofit2의 enqueue는 내부적으로 OkHttpClient를 사용하여 request를 asynchronous하게 보낸다. 이 때, `Dispatcher`가 여러 개의 스레드를 생성하여, concurrent한 request를 보낼 수 있게 된다. 반면에 코루틴은 싱글 스레드로 함수를 suspend하고 resume하면서 concurrency를 보장할 수 있는 특징이 있다. 
+**NOTE**: Retrofit2의 enqueue는 내부적으로 OkHttpClient를 사용하여 request를 asynchronous하게 보낸다. 이 때, `Dispatcher`가 여러 개의 스레드를 생성하여, concurrent한 request를 보낼 수 있게 된다. 반면에 코루틴은 싱글 스레드로 함수를 suspend하고 resume하면서 concurrency를 보장할 수 있는 특징이 있다.
 
 이러한 코드를 코루틴으로 변경해보자.
 
@@ -149,6 +153,7 @@ Suspend 함수를 쓰도록 코드를 변경하였으니, 이전의 Retrofit의 
 `makeLogin()`이 호출되면 `launch`의 익명 suspend 함수인 `{}`는 suspend될 것이고 `makeLogin()`이 끝나면 익명 함수는 다시 이어간다. `loadMovies()`의 경우도 마찬가지다. 만약 `loadMovies()`안에 또 다른 suspend 함수가 있다면, 비슷한 원리로 해당 함수가 끝날 때 까지 `loadMovies()`는 suspend될 것이다.
 
 ### 코루틴 스코프
+
 코루틴을 실행시키기 위해서는 코루틴 스코프라는게 존재해야한다는 것을 위 예시를 통해 볼 수 있었다. 근데 코루틴 스코프가 정확히 무엇인가? 이름 그대로 코루틴의 스코프(범위)이다.
 
 가령, 수식 계산을 위한 프로젝트를 생각해보자. 수식을 계산하는 것을 UI 스레드/메인 스레드에서 하기는 비용이 비싸기 때문에 계산/연산을 하기 위해 코루틴을 사용할 수 있을 것이다. `mathScope`이라는 코루틴 스코프를 생성하여 이 스코프를 사용하여 수식 계산을 수행할 모든 코루틴을 생성해보자.
@@ -168,6 +173,7 @@ mathScope.cancel()
 을 실행하면 된다. `mathScope`은 cancel되어 이 스코프 내에서 새로운 코루틴을 실행하려해도 아무런 코루틴이 실행되지 않을 것이다. 스코프를 사용하여 특정 코루틴들이 필요하지 않을 때 해당 스코프를 cancel하여 코루틴을 관리할 수 있다. 예를 들어, 안드로이드에서는 lifecycleScope와 viewModelScope가 있는데, 전자에서는 Activity/Fragment에서 작업을 수행하기 위한 스코프이고, 후자는 ViewModel에서 연산을 수행하기 위한 스코프이다.
 
 ### How does it work under the hood?
+
 함수가 suspend되고 resume되는 것은 실제로 내부적으로 어떻게 가능한 것일까? 컴파일러가 suspendable한 함수를 어떻게 아는 것인가?에 대한 질문에 대해 알아보겠다.
 
 다음과 같은 간단의 함수의 바이트코드와 디컴파일을 통한 Java 코드를 보자.
@@ -367,7 +373,7 @@ fun setupMovies(completion: Continuation<Any?>) {
 ```kotlin
 suspend fun setupMovies(completion: Continuation<Any?>) {
     val continuation = completion as? SetupMoviesStateMachine 
-	    ?: SetupMoviesStateMachine(completion)
+        ?: SetupMoviesStateMachine(completion)
 
     when (continuation.label) {
         0 -> {
@@ -397,11 +403,11 @@ suspend fun setupMovies(completion: Continuation<Any?>) {
 ```
 
 ## 결론
+
 함수가 suspend되었다가 resume되는 것은 마치 마법처럼 자연스럽게 수행되는 것 처럼 보인다. 하지만 내부적으로 보면 컴파일러가 suspension을 구현하기 위해 Finite State Machine을 통해 최적화된 콜백을 사용하는 것을 알 수 있다. 이러한 이유로 개발자가 일반적인 동기적인 코드를 적는데도 비동기적인 결과를 만들어낼 수 있다.
 
-
 ## 출처
-https://medium.com/@viniciusviana_61216/a-deep-dive-into-kotlin-coroutines-a621d2978451
 
-http://www.melconway.com/Home/pdf/compiler.pdf
+<https://medium.com/@viniciusviana_61216/a-deep-dive-into-kotlin-coroutines-a621d2978451>
 
+<http://www.melconway.com/Home/pdf/compiler.pdf>
