@@ -18,7 +18,9 @@ Logics are used everyday for representing, computing and reasoning.
 - Reasoning: as an aid to identify valid arguments
 
 In this article, we are going to look at:
+
 **Propositional logic** - about propositions (statements that can be evaluated to true or false) and,
+
 **Predicate logic** - about relations and functions (eg. the correctness of programs)
 
 There are also logics of time, knowledge, belief, etc.
@@ -45,18 +47,23 @@ For example,
 ### Propositional Logic: Syntax
 
 <u>Definition</u>
+
 An *atom* is a variable of the form $p_{1}, p_{2}, p_{3},..., p, q, r,...$
+
 A *formula* is defined by the following recursive process:
+
 F1. Every atom is a formula.
+
 F2. If $F$ is a formula then $\lnot F$ is a formula.
+
 F3. If $F, G$ are formulas, then so are $(F \lor G) \text{ and } (F \land G)$.
 
-The base case specifies the simplest objects, and teh recursive cases specify how to build complex objects from the previous ones.
+The base case specifies the simplest objects, and the recursive cases specify how to build complex objects from the previous ones.
 Just like a construction manual!
 
 For example, we can build $(p \land (q \lor \lnot p))$ in a bottom-up manner.
 
-NOTE: top-down method is also possible.
+**NOTE**: top-down method is also possible.
 
 $p$ is a formula (by F1)
 
@@ -77,17 +84,19 @@ So why do we need this definition anyway?
 
 *Semantics* refers to how you derive the value of a formula based on the values of its atomic subformulas.
 
-- The elements of the set $\{0, 1\}$ are called **truth values**.
+- The elements of the set $\\{0, 1\\}$ are called **truth values**.
 - After we assign truth values to atoms, we can give truth values to formulas.
-- An *assignment* is a function from atoms to truth values. So, on three variables $p, q, r$, there are $2^3 = 8$ assignments. (i.e. $\{0, 0, 0\}, \{0, 0, 1\}, \{0, 1, 0\}$ and so on.)
+- An *assignment* is a function from atoms to truth values. So, on three variables $p, q, r$, there are $2^3 = 8$ assignments. (i.e. $\\{0, 0, 0\\}, \\{0, 0, 1\\}, \\{0, 1, 0\\}$ and so on.)
 
 To be more rigorous, the truth value of a formula under an assignment $\alpha$ is defined by the following recursive process:
 
-TV1.
+**TV1.**
 
-$tv(p, \alpha) = \alpha(p)$ for every atom $p$.
+$$
+tv(p, \alpha) = \alpha(p) \text{ for every atom } p
+$$
 
-TV2.
+**TV2.**
 
 $$
 tv(\lnot F, \alpha) =
@@ -97,7 +106,7 @@ tv(\lnot F, \alpha) =
 \end{cases}
 $$
 
-TV3.
+**TV3.**
 
 $$
 tv(F \land G, \alpha) =
@@ -107,7 +116,7 @@ tv(F \land G, \alpha) =
 \end{cases}
 $$
 
-TV4.
+**TV4.**
 
 $$
 tv(F \lor G, \alpha) =
@@ -134,7 +143,9 @@ So, $tv(F \land G, \alpha) = 1 \leftrightarrow \alpha(F \land G) = 1$.
 ### Other logical symbols
 
 1. $\top \text{ and } \bot$ are formulas and called the propositional constants, namely *top* and *bottom* respectively.
-2. If $F, G$ are formulas, then so are $(F \rightarrow G) \text{ and } (F \leftrightarrow G)$. $\rightarrow$ is called the conditional(implication), and $\leftrightarrow$ is called teh bi-conditional(bi-implication).
+2. If $F, G$ are formulas, then so are $(F \rightarrow G) \text{ and } (F \leftrightarrow G)$.
+    - $\rightarrow$ is called the conditional(implication), and
+    - $\leftrightarrow$ is called teh bi-conditional(bi-implication).
 
 Now, in terms of semantics,
 
@@ -143,27 +154,41 @@ Now, in terms of semantics,
 3. The formula $(F \leftrightarrow G)$ is true if and only if $F$ and $G$ have the same truth values.
 
 Let's put it more formally.
-Recall, the first definitino for the truth value of formulas under an assignment $\alpha$.
+Recall, the first definition for the truth value of formulas under an assignment $\alpha$.
 
-TV1. $tv(p, \alpha) = \alpha(p) \text{ for atoms } p$.
+**TV1.**
+
+$tv(p, \alpha) = \alpha(p) \text{ for atoms } p$.
 
 Now for the next three definitions, we can replace the case definitions as follows.
 
-TV2. $tv(\lnot F, \alpha) = 1 - tv(F, \alpha)$
+**TV2.**
 
-TV3. $tv(F \land G, \alpha) = min \{tv(F, \alpha), tv(G, \alpha)\}$
+$tv(\lnot F, \alpha) = 1 - tv(F, \alpha)$
 
-TV4. $tv(F \lor G, \alpha) = max \{tv(F, \alpha), tv(G, \alpha)\}$
+**TV3.**
+
+$tv(F \land G, \alpha) = \min\\{tv(F, \alpha), tv(G, \alpha)\\}$
+
+**TV4.**
+
+$tv(F \lor G, \alpha) = \max\\{tv(F, \alpha), tv(G, \alpha)\\}$
 
 These are much more succinct.
 
 Now, for the other logical formulas,
 
-TV5. $tv(F \rightarrow G, \alpha) = tv(\lnot F \lor G, \alpha)$
+**TV5.**
 
-TV6. $tv(F \leftrightarrow G, \alpha) = tv((F \rightarrow G) \land (G \rightarrow F), \alpha)$
+$tv(F \rightarrow G, \alpha) = tv(\lnot F \lor G, \alpha)$
 
-TV7. $tv(\top, \alpha) = 1, \text{ } tv(\bot, \alpha) = 0$
+**TV6.**
+
+$tv(F \leftrightarrow G, \alpha) = tv((F \rightarrow G) \land (G \rightarrow F), \alpha)$
+
+**TV7.**
+
+$tv(\top, \alpha) = 1, \text{ } tv(\bot, \alpha) = 0$
 
 **NOTE**: For the case of implication, when $F$ is not true, then it doesn't matter whether $G$ is true or not, the formula $F \rightarrow G$ will still be true.
 It might be useful to think of the formula as to mean that if $F$ is true then I **promise** to make $G$ true.
