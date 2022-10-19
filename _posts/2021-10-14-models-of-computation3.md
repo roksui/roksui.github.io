@@ -14,7 +14,7 @@ For example,
 ## Normal Froms: NNF
 
 <u>Definition</u>
-A formula $F$ is in negation normal form(NNF) if negations only occur **immediately in front of atoms**.
+A formula $F$ is in *negation normal form(NNF)* if negations only occur **immediately in front of atoms**.
 
 For example,
 
