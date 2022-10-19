@@ -55,6 +55,7 @@ The base case specifies the simplest objects, and teh recursive cases specify ho
 Just like a construction manual!
 
 For example, we can build $(p \land (q \lor \lnot p))$ in a bottom-up manner.
+
 NOTE: top-down method is also possible.
 
 $p$ is a formula (by F1)
@@ -82,9 +83,12 @@ So why do we need this definition anyway?
 
 To be more rigorous, the truth value of a formula under an assignment $\alpha$ is defined by the following recursive process:
 
-TV1. $tv(p, \alpha) = \alpha(p)$ for every atom $p$.
+TV1.
+
+$tv(p, \alpha) = \alpha(p)$ for every atom $p$.
 
 TV2.
+
 $$
 tv(\lnot F, \alpha) =
 \begin{cases}
@@ -94,6 +98,7 @@ tv(\lnot F, \alpha) =
 $$
 
 TV3.
+
 $$
 tv(F \land G, \alpha) =
 \begin{cases}
@@ -103,6 +108,7 @@ tv(F \land G, \alpha) =
 $$
 
 TV4.
+
 $$
 tv(F \lor G, \alpha) =
 \begin{cases}
@@ -209,12 +215,15 @@ The questions are...
 - Then the truth-table has $2^n$ rows.
 - So this algorithm runs in worst-case exponential time (in the size of $F$).
 - Suppose you can generate a table at the rate of one row per second.
-- If $n = 80$, you will need $2^80$ seconds to write out the table.
+- If $n = 80$, you will need $2^{80}$ seconds to write out the table.
 - This is about 2.8 million times the age of the universe.
 
 Now...what if we could generate a billion rows per second?
+
 So the question becomes,
+
 **Is there a substantially faster method?**
+
 This is extremely important as it is the central NP-complete problem.
 One can verify in polynomial time if a given assignment satisfies a formula, but it is not known if the satisfiability problem itself can be solved in polynomial time.
 And, many many problems can be efficiently reduced to the satisfiability problem.

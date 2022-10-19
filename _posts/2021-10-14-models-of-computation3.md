@@ -31,15 +31,19 @@ are not.
 For every formula $F$, there is an logically equivalent formula in NNF.
 
 <u>Algorithm</u> (Push Negation Inwards)
+
 Idea: Substitute in $F$ every occurence of a subformula of the form:
 
 $\lnot \lnot \text{ by } G$ ... Double Negation Law
+
 $\lnot(G \land H) \text{ by } (\lnot G \lor \lnot H)$ ... de Morgan's Law
+
 $\lnot(G \lor H) \text{ by } (\lnot G \land \lnot H)$ ... deMorgan's Law
 
 until no such subformulas occur, and return the result.
 
 Let us look at an example.
+
 Put $\lnot(\lnot p \land (\lnot(r \land s) \lor q))$ into NNF.
 
 To simplify things, let $\lnot p = G$, and $\lnot (r \land s) \lor q = H$.
@@ -72,6 +76,7 @@ $(p \land q) \lor r$ is not in CNF.
 For every formula $F$, there is an equivalent formula in CNF.
 
 <u>Proof</u>
+
 Here is an algorithm that transforms $F$ into an equivalent formula in CNF.
 
 1. Put $F$ in NNF, call it $F'$.
@@ -94,9 +99,11 @@ Two computational problems on graphs:
 
 Although these problems can be solved using graph algorithms, we will solve them using logic.
 
-Step 1. Encode the input as a formula.
-Step 2. Check if the formula is satisfiable.
-Step 3. If it is satisfiable, turn a satisfying assignment into a solution of the graph problem, otherwise say "no solution".
+**Step 1.** Encode the input as a formula.
+
+**Step 2.** Check if the formula is satisfiable.
+
+**Step 3.** If it is satisfiable, turn a satisfying assignment into a solution of the graph problem, otherwise say "no solution".
 
 ### Solving 3COL with logic
 
@@ -120,19 +127,19 @@ We can represent constraints placed on vertexes as follows.
 
 - Every vertex gets at least one colour:
 
-$\bigwedge_{i \in V}(r_{i} \lor g_{i} \lor b{i})$
+    $\bigwedge_{i \in V}(r_{i} \lor g_{i} \lor b{i})$
 
 - Every vertex gets at most one colour:
 
-$\bigwedge_{i \in V}(\lnot r_{i} \lor \lnot g_{i})$
-$\bigwedge_{i \in V}(\lnot r_{i} \lor \lnot b_{i})$
-$\bigwedge_{i \in V}(\lnot g_{i} \lor \lnot b_{i})$
+    $\bigwedge_{i \in V}(\lnot r_{i} \lor \lnot g_{i})$
+    $\bigwedge_{i \in V}(\lnot r_{i} \lor \lnot b_{i})$
+    $\bigwedge_{i \in V}(\lnot g_{i} \lor \lnot b_{i})$
 
 - Adjacent vertices get different colours:
 
-$\bigwedge_{i, j \in E}(\lnot r_{i} \lor \lnot r_{j})$
-$\bigwedge_{i, j \in E}(\lnot g_{i} \lor \lnot g_{j})$
-$\bigwedge_{i, j \in E}(\lnot b_{i} \lor \lnot b_{j})$
+    $\bigwedge_{i, j \in E}(\lnot r_{i} \lor \lnot r_{j})$
+    $\bigwedge_{i, j \in E}(\lnot g_{i} \lor \lnot g_{j})$
+    $\bigwedge_{i, j \in E}(\lnot b_{i} \lor \lnot b_{j})$
 
 Now, we define $\phi$ to be the conjunction of all these constraints.
 

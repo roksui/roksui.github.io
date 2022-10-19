@@ -2,7 +2,6 @@
 title: Models of Computation(4) - Context-free Grammars (CFG)
 use_math: true
 ---
-
 ### Limitations of Regular Expressions
 
 Regular expressions are useful for basic pattern matching. However, they cannot recognize the set of all Python programs nor all propositional formulas!
@@ -278,34 +277,39 @@ Why? Just add a new rule $S \rightarrow SS_{1} \mid \epsilon$.
 
 ### Examples
 
-- Show that $L(a^{*} \cup b^{*})$ is context-free.
+- Show that $L(a^{\*} \cup b^{*})$ is context-free.
 
-Note that this is the language $L(a^{*}) \cup L(b^{*})$.
+Note that this is the language $L(a^{\*}) \cup L(b^{*})$.
 
-Also, note that $L(a^{*}) = L(a)^{*}$.
+Also, note that $L(a^{\*}) = L(a)^{*}$.
+
 A grammar for $L(a)$ is simply,
+
 $$
 S \rightarrow a
 $$
 
 for the star, we use the fact from above,
+
 $$
 S \rightarrow SS_{1} \mid \epsilon \\
 S_{1} \rightarrow a
 $$
+
 which simplifies to,
+
 $$
 S \rightarrow Sa \mid \epsilon
 $$
 
-So a grammar for $L(a^{*}) \text{ and } L(b^{*})$:
+So a grammar for $L(a^{\*}) \text{ and } L(b^{*})$:
 
 $$
 S_{1} \rightarrow S_{1}a  \mid  \epsilon \\
 S_{2} \rightarrow S_{2}b  \mid  \epsilon
 $$
 
-So here is a grammar for $L(a^{*}) \cup L(b^{*})$:
+So here is a grammar for $L(a^{\*}) \cup L(b^{*})$:
 
 $$
 S \rightarrow S_{1} \mid S_{2} \\
@@ -313,11 +317,11 @@ S_{1} \rightarrow S_{1}a \mid \epsilon \\
 S_{2} \rightarrow S_{2}b \mid \epsilon
 $$
 
-- Show that $L(a^{*}b^{*})$ is context-free.
+- Show that $L(a^{\*}b^{*})$ is context-free.
 
-Note that this is the language $L(a^{*})L(b^{*})$.
+Note that this is the language $L(a^{\*})L(b^{*})$.
 
-Similar to above, here is a grammar for $L(a^{*})L(b^{*})$.
+Similar to above, here is a grammar for $L(a^{\*})L(b^{*})$.
 
 $$
 S \rightarrow S_{1}S_{2} \\
@@ -363,11 +367,13 @@ A **parse tree** (or derivation tree) is a tree labelled by variables and termin
 - The children of a node labeled $X$ are labeled by the RHS of a rule $X \rightarrow x$, in order.
 
 For example, the parse tree for $0011 \text{ in } S \rightarrow 0S1 \mid 01$ is as follows:
+
 --ADD IMAGE--
 
 A traversal of the leaf nodes retrieves the string.
 
 The parse tree gives the "meaning" of a string.
+
 --ADD IMAGE--
 
 $$
@@ -385,17 +391,19 @@ The parse tree gets split up into three subtrees, and if we look at the string o
 ### Natural Language Processing (NLP)
 
 $$
-\langle Sentence \rangle \rightarrow \langle NounPhrase \rangle\;\langle VerbPhrase \rangle \\
-\langle NounPhrase \rangle \rightarrow \langle ComplexNoun \rangle \\
-\langle NounPhrase \rangle \rightarrow \langle ComplexNoun \rangle\;\langle PrepPhrase \rangle \\
-\langle VerbPhrase \rangle \rightarrow \langle ComplexVerb \rangle \mid \langle ComplexVerb \rangle\;\langle PrepPhrase \rangle \\
-\langle PrepPhrase \rangle \rightarrow \langle Prep \rangle\;\langle ComplexNoun \rangle \\
-\langle ComplexNoun \rangle \rightarrow \langle Article \rangle\;\langle Noun \rangle \\
-\langle ComplexVerb \rangle \rightarrow \langle Verb \rangle \mid \langle Verb \rangle\;\langle NounPhrase \rangle \\
-\langle Article \rangle \rightarrow \text{a} \mid \text{the} \\
-\langle Noun \rangle \rightarrow \text{boy} \mid \text{dog} \mid \text{ball} \mid \text{stick} \\
-\langle Verb \rangle \rightarrow \text{walks} \mid \text{runs} \\ 
-\langle Prep \rangle \rightarrow \text{with}
+\begin{align}
+& \langle Sentence \rangle \rightarrow \langle NounPhrase \rangle\;\langle VerbPhrase \rangle \\
+& \langle NounPhrase \rangle \rightarrow \langle ComplexNoun \rangle \\
+& \langle NounPhrase \rangle \rightarrow \langle ComplexNoun \rangle\;\langle PrepPhrase \rangle \\
+& \langle VerbPhrase \rangle \rightarrow \langle ComplexVerb \rangle \mid \langle ComplexVerb \rangle\;\langle PrepPhrase \rangle \\
+& \langle PrepPhrase \rangle \rightarrow \langle Prep \rangle\;\langle ComplexNoun \rangle \\
+& \langle ComplexNoun \rangle \rightarrow \langle Article \rangle\;\langle Noun \rangle \\
+& \langle ComplexVerb \rangle \rightarrow \langle Verb \rangle \mid \langle Verb \rangle\;\langle NounPhrase \rangle \\
+& \langle Article \rangle \rightarrow \text{a} \mid \text{the} \\
+& \langle Noun \rangle \rightarrow \text{boy} \mid \text{dog} \mid \text{ball} \mid \text{stick} \\
+& \langle Verb \rangle \rightarrow \text{walks} \mid \text{runs} \\
+& \langle Prep \rangle \rightarrow \text{with}
+\end{align}
 $$
 
 - Terminals are the lower-case English alphabet.
@@ -405,11 +413,13 @@ Now comes the ambiguity though...
 The string "the boy walks the dog with the stick" can be derived in this grammar. But it has (at least) two parse-trees depending on who has the stick.
 
 First parse tree:
+
 --ADD IMAGE--
 
 In this case, the dog has the stick.
 
 Second parse tree:
+
 --ADD IMAGE--
 
 In this case, the boy has the stick.

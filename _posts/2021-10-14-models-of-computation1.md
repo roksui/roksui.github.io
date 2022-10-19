@@ -100,7 +100,7 @@ $A^{0} = {\epsilon}$
 
 The star of $A$, written as $A^{*}$, is the language $\bigcup_{n \in \mathbb{N}} A^{n} = A^{0} \cup A^{1} \cup A^{2} \cup \cdots$
 
-i.e. $A^{*} = \{x_{1}x_{2} \cdots x_{k} \in \sum^{*} : k \geq 0, \text{each } x_{i} \in A\}$.
+i.e. $A^{\*} = \{x_{1}x_{2} \cdots x_{k} \in \sum^{*} : k \geq 0, \text{each } x_{i} \in A\}$
 
 ## Regular Expressions
 
@@ -120,11 +120,11 @@ Definition: Let $\sum$ be an alphabet. The regular expressions over $\sum$ are d
 2. Each symbol $a$ from $\sum$ is a regular expression.
 3. If $R_{1}, R_{2}$ are regular expressions, then so is $R_{1} \cup R_{2}$.
 4. If $R_{1}, R_{2}$ are regular expressions, then so is $R_{1}R_{2}$.
-5. If R is a regular expression, then so is $R^{*}$.
+5. If $R$ is a regular expression, then so is $R^{*}$.
 
 For example,
 Let $\sum = {a,b}$.
-Some possible regular expressions are $a \cup \emptyset$, $a\epsilon$, $b^{*}$, $((a^{*} \cup b^{*})(ac))^{*}$.
+Some possible regular expressions are $a \cup \emptyset$, $a\epsilon$, $b^{\*}$, $((a^{\*} \cup b^{\*})(ac))^{*}$.
 
 ### Semantics
 
@@ -136,7 +136,7 @@ Definition: Let $\sum$ be an alphabet. The language $L(R)$ represented by a reul
 2. $L(a) = \\{a\\} \text{ for } a \in \sum$
 3. $L(R_{1} \cup R_{2}) = L(R_{1}) \cup L(R_{2})$
 4. $L(R_{1}R_{2}) = L(R_{1})L(R_{2})$
-5. $L(R^{*}) = L(R)^{*} = \{\epsilon\} \cup L(R)^{1} \cup L(R)^{2} \cup L(R)^{3} \cup \cdots$
+5. $L(R^{\*}) = L(R)^{*} = \{\epsilon\} \cup L(R)^{1} \cup L(R)^{2} \cup L(R)^{3} \cup \cdots$
 
 If $s \in L(R)$, we say that $s \text{ matches } R$.
 
