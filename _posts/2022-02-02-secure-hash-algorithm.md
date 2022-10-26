@@ -96,8 +96,95 @@ $$
 S^{n}(X) = (X << n) \text{ OR } (X >> 32 -n)
 $$
 
-여기서, $0 < n < 32$ 이고, $X << n$ 은 left-shift 연산: $X$ 의 leftmost $n$ bits를 버리고, 왼쪽으로 이동시킨 후, 오른쪽에 $n$ 개의 0을 채운다. 그리고, $X >> 32 - n$ 은 right-shift 연산: $X$ 의 rightmost $n$ bits를 버리고 
+여기서, $0 < n < 32$ 이고, $X << n$ 은 left-shift 연산: $X$ 의 leftmost $n$ bits를 버리고, 왼쪽으로 이동시킨 후, 오른쪽에 $n$ 개의 0을 채운다. 그리고, $X >> 32 - n$ 은 right-shift 연산: $X$ 의 rightmost $n$ bits를 버리고, 오른쪽으로 이동시킨 후, 왼쪽에 $n$ 개의 0을 채운다. 따라서 $S^{n}X$는 $X$에 대한 $n$개의 포지션을 circular shift하는 것을 의미한다.
 
+![circular-shift-op](/assets/img/circular_shift_op.png)
+
+연산을 수행하면 $W(16)$은 $\text{ 11000010 11000100 11000111 000000000}$가 된다.
+
+**Step 6.** Step 1에서 정의된 해시 값들을 다음 변수들에 저장한다.
+
+$$
+A = H_{0}
+B = H_{1}
+C = H_{2}
+D = H_{3}
+E = H_{4}
+$$
+
+**Step 7.** 80 iteration 동안($0 \leq i \leq 79$), 다음을 계산한다.
+
+$$
+\text{TEMP} = S^5 * A + f(i; B, C, D) + E + W(i) + K(i)
+$$
+
+TEMP를 구한 후, 다음과 같이 변수를 재할당한다.
+
+이 때, $f(i; B, C, D)$는 세 개의 32-bit 단어인 $B$, $C$, $D$, 에 대해 $i$ 값에 따라 논리 연산을 수행하는 함수이고, 32-bit 아웃풋을 준다. 함수들은 다음과 같다.
+
+$$
+\begin{align*}
+f(i; B, C, D) &= (B \land C) \lor ((\lnot B) \land D) &\qquad \text{ for } 0 \geq i \geq 19 \\
+f(i; B, C, D) &= B \oplus C \oplus D &\qquad \text{ for } 20 \geq i \geq 39 \\
+f(i; B, C, D) &= (B \land C) \lor (B \land D) \lor (C \land D) &\qquad \text{ for } 40 \geq i \geq 59 \\
+f(i; B, C, D) &= B \oplus C \oplus D &\qquad \text{ for } 60 \geq i \geq 79
+\end{align*}
+$$
+
+또한, $K(i)$는 다음과 같이 hex constant로 정의된다.
+
+$$
+\begin{align*}
+K(i) &= \text{5A827999} &\qquad \text{ for } 0 \geq i \geq 19 \\
+K(i) &= \text{6ED9EBA1} &\qquad \text{ for } 20 \geq i \geq 39 \\
+K(i) &= \text{8F1BBCDC} &\qquad \text{ for } 40 \geq i \geq 59 \\
+K(i) &= \text{CA62C1D6} &\qquad \text{ for } 60 \geq i \geq 79
+\end{align*}
+$$
+
+$$
+E = D
+D = C
+C = S^{30}(B)
+B = A
+A = \text{TEMP}
+$$
+
+**Step 8.** 현 블록의 해시 값을 모든 블록들에 대한 전체 해시 값에 더한 후, 다음 블록을 처리한다.
+
+$$
+H_{0} = H_{0} + A
+H_{1} = H_{1} + B
+H_{2} = H_{2} + C
+H_{3} = H_{3} + D
+H_{4} = H_{4} + E
+$$
+
+**Step 9.** 모든 블록들이 처리되면 5개의 해시 값들을 OR 논리 연산자인 $\lor$로 연결한 160-bit 문자열로 나타낸 message digest를 만든다.
+
+$$
+HH = S^{128}(H_{0}) \lor S^{96}(H_{1}) \lor S^{64}(H_{2}) \lor S^{32}(H_{3}) \lor H^{4}
+$$
+
+결과적으로 문자열 'abc'는 `a9993e364706816aba3e25717850c26c9cd0d89d`의 해시 값을 갖게 된다.
+
+만약 문자열이 약간 바뀌어 'abcd'가 되면, 해시 값은 `81fe8bfe87576c3ecb22426f8e57847382917acf`로 매우 다르게 바뀌어서 공격자들이 원래의 메시지와 비슷할 것이라 예측할 수 없다.
+
+SHA-1은 아직 많이 쓰이고 있지만, 2005년에 암호 해독가들에 의해 알고리즘에 취약점이 발견되었다. 이 취약점은 여러 개의 다른 인풋을 사용하여 매우 빠르게 충돌(collision), 즉 두 개의 다른 인풋이 동일한 digest와 매핑되는 것을 찾는 알고리즘에 의해 발생하였다.
+
+2010년 후에 여러 개의 기업들은 SHA-2나 SHA-3로 업그레이드하는 것을 권장하였다.
+
+## SHA-2
+
+SHA-1의 취약점 발견으로 인해, 암호 해독가들은 알고리즘을 보완하여 SHA-2를 만들었다. SHA-2는 한 개의 해시 함수가 아니라 각각 32, 64-bit 단어들을 사용하는 SHA-256과 SHA-512, 두 개의 해시 함수로 구성되어 있다.
+
+SHA-1은 160-bit 크기의 digest를 만들지만, SHA-2는 224나 256-bit 크기의 digest를 만든다는 점에서 크게 다르다. 또한, SHA-2에서는 블록 크기가 512 bits나 1024 bits가 될 수 있다.
+
+SHA-2에 대한 브루트 포스 공격 또한 SHA-1을 대상으로 한 것 보다 효과적이지 않다. 길이가 $L$인 digest에 대응되는 메시지를 찾으려면 $2^{L}$만큼의 값을 구해야하므로 브루트 포스 공격에 대해서는 안전하다. 이 공격이 성공하는 시간은 메시지의 길이에 비례하기 때문에 SHA-1의 160-bit가 SHA-2에서 더 길어진 것이다.
+
+### 결론
+
+암호학이 이렇게 빨리 발전할 수 있었던 것은, 그만큼 많은 공격들이 이루어지고 있다는 뜻일 것이다. 가장 흔한 공격 중 하나가 역상 공격 (preimage attack)인데, 이는 미리 계산된 값 테이블을 갖고 브루트포스로 비교하여 패스워드를 크랙킹하는 것이다. 이 공격에 대한 해결법은 공격자가 주어진 해시 값에 대한 메시지를 찾기 위해 엄청난 양의 자원과 시간을 걸리게 하는 것이다. 이 외에도, 수학적 특성을 사용한 공격, 예를 들어 생일 공격 (birthday attack)이 있는데, 이 또한, 해시 충돌을 찾아내기 위해 생일 문제 (birthday problem)의 확률적 결과를 기반으로 한다. 생일 문제에 따르면 해시 함수의 입력값을 다양하게 할수록 해시 값이 같은 두 입력값을 발견할 확률이 빠르게 증가한다. 즉, 모든 값을 대입하지 않고도 해시 충돌을 찾을 수 있는 확률을 크게 높일 수 있다는 사실을 활용한다.
 
 ## 출처
 
