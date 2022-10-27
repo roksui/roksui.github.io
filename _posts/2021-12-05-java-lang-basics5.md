@@ -9,6 +9,7 @@ categories:
 클래스와 객체에 대한 기초 내용은 제대로 익히지 않으면 나중에 발목을 잡는 것들이니 중요하므로 천천히 알아보겠다.
 
 ## Classes
+
 우리는 다음과 같은 형태로 클래스를 정의한다.
 
 ```java
@@ -25,6 +26,7 @@ class MyClass {
 제어자인 *public*과 *private*을 클래스 선언에 붙일 수도 있다. 이는 어떤 다른 클래스들이 MyClass를 접근할 수 있는지 결정한다.
 
 요약하자면 클래스 선언에는 다음과 같은 구성요소들이 순서대로 온다:
+
 1. public, private 등과 같은 제어자 (**NOTE**: private은 중첨 클래스에만 적용가능함)
 2. 클래스 이름 (첫 문자는 컨벤션에 의해 대문자)
 3. 클래스가 부모가 있다면 extend 키워드를 사용하여 명시
@@ -34,6 +36,7 @@ class MyClass {
 **NOTE**: 클래스의 필드는 다른 이름으로 member variable(멤버 변수)라고도 부른다.
 
 Field declaration(필드 선언)에는 세 가지 구성요소가 다음과 같은 순서로 온다:
+
 1. 0개 이상의 제어자 (public or private 등)
 2. 필드 타입
 3. 필드 이름
@@ -49,6 +52,7 @@ public int speed;
 위 세 가지 필드는 모두 데이터 타입이 int이고, public 키워드는 이 필드들은 이 클래스를 접근할 수 있는 모든 객체들에 의해 접근 가능한 퍼블릭 멤버라는 것을 식별해준다.
 
 ### Access Modifiers(접근 제어자)
+
 가장 왼쪽에 명시되는 제어자가 접근 제어자로써 다른 클래스들이 멤버 필드의 접근할 수 있는지를 명시한다. 현재로써는 public과 private만 생각해보자.
 
 - public 제어자: 필드는 모든 클래스들로부터 접근 가능하다.
@@ -101,6 +105,7 @@ public class Bicycle {
 **NOTE**: 통상적으로 메소드 이름의 첫 단어(하나만 있다면 그 단어)는 동사이다.
 
 ### Defining Methods
+
 메소드 정의에 대해서 좀 더 자세히 알아보자.
 
 전형적인 메소드 선언은 다음과 같다.
@@ -112,6 +117,7 @@ public double calculateAnswer(double wingSpan, int numberOfEngines, double lengt
 ```
 
 더 일반적으로 메소드 선언은 다음과 같이 6개의 구성요소를 순서대로 가진다:
+
 1. 제어자 - public, private 등
 2. 리턴 타입
 3. 메소드 이름
@@ -126,9 +132,11 @@ public double calculateAnswer(double wingSpan, int numberOfEngines, double lengt
 위 예시의 메소드 시그니쳐는 `calculateAnswer(double, int, double, double)`이다.
 
 ### Naming a Method
+
 메소드의 이름을 지을 때 컨벤션에 의해 동사로 시작해야 한다.
 
 ### Overloading Methods
+
 Java 언어는 *method overloading(메소드 오버로딩)*을 지원하여 서로 다른 메소드 시그니쳐를 가진 메소드들을 구분할 수 있다. 즉, 한 클래스 안에서 서로 다른 파라미터 리스트를 가진다면 동일한 이름을 가질 수 있다는 말이다.
 
 예를 들어 다양한 데이터 (string, integer, 등)를 그릴 수 있는 메소드를 가진 캘리그래피에 대한 클래스가 있다고 가정하자. 각 데이터 타입에 대해 새로운 메소드 이름을 사용하는 것은 번거로울 것이다 - drawString, drawInteger, 등. 따라서 이름은 동일하게 하되, 다른 파라미터 리스트를 가지게 하면 된다.
@@ -153,6 +161,7 @@ public class DataArtist {
 **NOTE**: Java Tutorial에는 explicitly하게 명시하지는 않는 부분이 파라미터 개수/종류가 같을 경우 메소드 파라미터 순서에 대해서이다. 컴파일러는 메소드 오버로딩을 시그니쳐가 다른 것으로 구분하기 때문에, 위 클래스에 `public void draw(double f, int i)`를 추가해도 이 또한 메소드 오버로딩이 될 것이다.
 
 ### Constructors
+
 클래스는 객체를 생성할 때 호출되는 생성자를 가진다. 생성자 선언은 메소드 선언과 비슷하다, 그러나 클래스 이름을 사용하고 리턴 타입이 없다.
 
 ```java
@@ -165,7 +174,7 @@ public Bicycle(int startCadence, int startSpeed, int startGear) {
 
 이와 같은 생성자가 있을 때, 새로운 Bicycle 객체를 만들려면, new 연산자를 통해 생성자를 호출한다.
 
-```
+```java
 Bicycle myBike = new Bicycle(30, 0, 8);
 ```
 
@@ -190,6 +199,7 @@ public Bicycle() {
 **NOTE**: Parameter와 Argument(인자)가 헷갈리는 경우가 많다. 정확히 말하면 파라미터는 메소드 선언에서의 변수들의 리스트를 말하고, 인자는 메소드가 호출될 때 전달되는 실제 값들을 말한다. 즉, 런타임 시, 메소드 바디에서 사용되는 파라미터들이 전달된 인자들의 값이 되는 것이다.
 
 ### Arbitrary Number of Arguments
+
 *varargs*라는 construct를 사용하여 한 메소드에게 임의의 개수의 값들을 전달할 수 있다. 메소드에게 몇 개의 특정 타입의 인자가 전달될지 모를 때 사용할 수 있다. 어떻게 보면 수동으로 배열을 만드는 것의 숏컷이라고 볼 수 있다.
 
 varargs를 사용하려면 타입 뒤에 ellipsis(...)를 붙여 주고, 공백 하나, 그리고 파라미터 이름을 적어주면 된다. 그러면 메소드는 0개 이상의 파라미터 개수로 호출될 수 있다.
@@ -223,6 +233,7 @@ System.out.printf("%s: %d, %s, %s, %s\n", name, idnum, address, phone, email);
 ```
 
 ### Parameter Names
+
 클래스의 메소드나 생성자에서 파라미터를 명시할 때, 이름을 정해야 한다. 이 이름은 메소드 바디에서 전달된 인자를 참조할 때 사용된다.
 
 파라미터의 이름은 이 스코프안에서 고유해야 한다. 즉, 동일한 메소드에서 두 개의 같은 파라미터 이름을 사용할 수 없고, 메소드 안에 있는 로컬 변수의 이름과도 같을 수 없다.
@@ -239,6 +250,7 @@ public class Circle {
 ```
 
 ### Passing Primitive Data Type Arguments
+
 int나 double같은 primitive 인자들은 메소드에게 *value(값)*으로 전달된다. 즉, 파라미터의 값의 변경은 메소드 스코프 내에서만 일어나고, 메소드가 리턴하면 파라미터들은 없어지고 변경 또한 손실된다.
 
 ```java
@@ -262,13 +274,14 @@ public class PassPrimitiveByValue {
 
 아웃풋:
 
-```
+```text
 After invoking passMethod, x = 3
 ```
 
 따라서 x의 값은 변하지 않은 것을 볼 수 있다.
 
 ### Passing Reference Data Type Arguments
+
 객체와 같이 reference 데이터 타입 인자들 또한 메소드에게 값으로 전달된다. 그리고 메소드가 리턴하면 전달된 참조값은 전과 동일한 객체를 참조하게 된다. 그러나, 객체의 필드 값은 메소드 안에서 바뀔 수 있다.
 
 예를 들어, Circle 객체를 움직이는 메소드를 살펴보자.
@@ -290,16 +303,19 @@ moveCircle(myCircle, 23, 56);
 위 코드를 보면, 메소드 안에서 circle은 처음에 myCircle을 가리킨다(refer to). 메소드에서 circle이 가리키는 myCircle의 x 및 y 좌표에 23, 56씩 더해준다. 이 변경은 메소드가 리턴하고도 유지될 것이다. 그 후, circle은 새로운 Circle 객체(x = y = 0)에 대한 reference를 할당 받는다. 메소드 내에서 circle이 가리키는 객체는 변경하였지만 메소드가 리턴하면 myCircle은 메소드가 호출되었을 때 가리키던 Circle 객체를 아직 가리키고 있을 것이다. 다시 말해, 파라미터가 메소드 내에서 새로운 객체를 가리키더라도, 그로 인해 전달된 객체 인자가 가리키는 객체는 변하지 않는다. 포인터 개념으로 생각하면 당연한 결과인 것 같다.
 
 ### Creating Objects
+
 ```java
 Point OrigineOne = new Point(23, 94);
 ```
 
 위와 같은 객체를 생성하는 구문이 있다. 그러면 우리는 3가지 과정으로 이를 나눈다.
+
 1. **Declaration(선언)**: `Point OriginOne` 부분으로, 변수 이름과 객체 타입을 연관시키는 과정
 2. **Instantiation(인스턴스화)**: new 연산자를 통해 객체를 생성하는 과정
 3. **Initialization(초기화)**: new 연산자 후에 생성자를 호출하여 새로운 객체를 초기화하는 과정
 
 ### Declaring a Variable to Refer to an Object
+
 우리는 변수를 선언할 때, `type name`으로 한다.
 
 이는 컴파일러에게 "우리는 *name*을 사용하여 *type*의 데이터 타입을 가진 데이터를 참조하겠다."라고 말하는 것이었다.
@@ -315,6 +331,7 @@ Reference 변수 또한 `Point originOne`처럼 선언할 수 있다.
 ![Object references Nothing](/assets/img/object_ref_nothing.gif)
 
 ### Instantiating a Class
+
 new 연산자를 사용하면 새로운 객체를 위한 메모리를 할당하고 그 메모리 공간에 대한 reference를 리턴함으로써 클래스를 인스턴스화할 수 있다.
 
 또, new 연산자는 객체 생성자를 호출한다.
@@ -334,6 +351,7 @@ int height = new Rectangle().height;
 ```
 
 ### Intializing an Object
+
 Point 클래스 코드는 다음과 같다.
 
 ```java
@@ -406,6 +424,7 @@ public class Rectangle {
 **NOTE**: `int height = new Rectangle().height;`과 같이 객체를 생성하고 이에 대한 reference를 저장하지 않는다면, 이 Rectangle 인스턴스에 대한 reference는 프로그램 그 어디에도 저장되지 않는다. 따라서 이 객체는 unreferenced하고 그것의 자원은 JVM에 의해 재활용될 수 있다.
 
 ### A bit about the Garbage Collector
+
 몇몇 객체지향 언어는 우리가 생성하는 모든 객체들을 추적하고, 그것들이 더이상 필요하지 않을 때, 직접 소멸시키는 것을 요구한다. 메모리를 explicit하게 직접적으로 관리하는 것은 번거롭고 에러가 쉽게 발생할 수 있다. Java 플랫폼은 우리가 원하는만큼의 객체를 생성할 수 있게 해주고, 우리는 객체들을 소멸시키는 것은 걱정안해도 된다. Java 런타임 환경(JRE)은, 사용되고 있지 않은 객체들을 알아서 찾아서 삭제시켜준다. 이 프로세스를 *garbage collection*이라고 한다.
 
 어떠한 객체에 대한 reference가 더 이상 존재하지 않는다면, 그것은 garbage collection의 대상이 될 자격이 있다. 변수가 담고 있는 reference들은 주로 변수의 스코프를 벗어날 경우 없어진다. 혹은, 변수에 null을 할당함으로써 객체 reference를 explicit하게 없앨 수 있다.
@@ -413,7 +432,9 @@ public class Rectangle {
 JRE는 garbage collector를 가지고 있어, 주기적으로 reference를 가지지 않는 객체들에 의해 사용되는 메모리를 free시켜준다. Garbage collector는 적절한 시간을 판단하여 자신의 프로세스를 수행한다. Java가 가지는 매우 편리한 기능이라고 생각된다.
 
 ### Returning a Value from a Method
+
 메소드는 다음 중 하나의 경우 리턴한다.
+
 - 메소드의 모든 구문을 완료했을 때
 - return 구문에 도달하였을 때
 - exception(예외)를 날릴 때
@@ -421,6 +442,7 @@ JRE는 garbage collector를 가지고 있어, 주기적으로 reference를 가�
 모든 메소드 (void 메소드 제외)는 return 구문을 포함해야 하고, 선언한 리턴 타입을 가지는 값을 리턴해야 한다.
 
 ### Returning a Class or Interface
+
 메소드의 리턴 타입이 클래스 이름일 경우, 리턴되는 객체의 타입의 클래스는 리턴 타입의 클래스, 혹은 subclass여야 한다. 다음과 같이 Object의 subclass인 java.lang.Number의 subclass인 ImaginaryNumber 계층이 있다고 해보자.
 
 ![ImaginaryNum class Hierarchy](/assets/img/imgnum_class_hier.gif)
@@ -450,6 +472,7 @@ public ImaginaryNumber returnANumber() {
 **NOTE**: 리턴 타입이 인터페이스 이름일 수도 있다. 그럴 경우, 리턴되는 객체는 명시된 인터페이스를 구현해야만 한다.
 
 ### Recall the 'this' Keyword
+
 인스턴스 메소드나 생성자에서 this는 *current object(현재 객체)*에 대한 reference이다. 현재 객체라함은 현재 호출되고 있는 메소드/생성자의 주인이다. 이 this를 사용하여 현재 객체의 멤버들에 접근할 수 있다.
 
 this를 사용하는 가장 흔한 이유는 필드가 메소드/생성자 파라미터에 의해 섀도잉되기 떄문이다.
@@ -492,7 +515,9 @@ public class Rectangle {
 ```
 
 ### Controlling Access to Members of a Class
+
 Access level modifiers(접근 제어자)는 다른 클래스들이 특정 필드나 메소드에 접근할 수 있는지를 결정한다. 접근 제어에는 두 개의 레벨이 있다.
+
 - Top level - public / package-private (no explicit modifier)
 - Member level - public / private / protected / package-private (no explicit modifier)
 
@@ -501,14 +526,17 @@ Access level modifiers(접근 제어자)는 다른 클래스들이 특정 필드
 멤버 레벨에서는 탑 레벨처럼 public 제어자, 혹은 아무런 제어자를 안쓰면 package-private인 디폴트 제어자를 사용할 수 있다. 또, private 및 protected 제어자도 가능한데, private으로 선언되면 해당 멤버가 자신의 클래스 안에서만 접근될 수 있다. protected로 선언되면 멤버는 자신의 패키지에 더해, 다른 패키지에 있는 자기 클래스의 subclass에 의해 접근될 수 있다.
 
 접근 레벨은 우리에게 두 가지 영향을 준다.
+
 1. Java 플랫폼안의 클래스들과 같이 다른 소스로부터 온 클래스들을 사용할 때, 우리의 클래스가 그 클래스들의 어떤 멤버들을 사용할 수 있는지를 접근 레벨이 결정해준다.
 2. 클래스를 작성할 때, 우리는 멤버 변수 및 멤버 메소드들이 어떤 접근 레벨을 가질지를 결정해야 한다.
 
 **접근 레벨을 정하는 팁?**
 다른 프로그래머들이 나의 클래스를 사용할 때, 오용으로 인해 에러가 발생하면 안된다. 접근 제어로 이를 어느정도 방지할 수 있다.
+
 - Constant를 제외하고는 public field를 피하는 것이 좋다.
 
 ### Understanding Class Members
+
 이전에 class variable를 다시 기억해보자. static 키워드를 사용하여 필드 및 메소드를 만드는 것이었다.
 
 여러 개의 객체들이 동일한 클래스 블루프린트로부터 생성된다면, 각 객체는 자신만의 instance variable 카피를 갖게 된다. 이전 예시에서 Bicycle 객체들이 서로 다른 cadence, gear, speed 인스턴스 변수 값을 서로 다른 메모리 위치에 갖듯이 말이다.
@@ -554,6 +582,7 @@ public static int getNumberOfBicycles() {
 ```
 
 인스턴스 변수/메소드와 클래스 변수/메소드를 혼합하여 사용할 때 제한 사항은 다음과 같다:
+
 - **인스턴스 메소드**는 **인스턴스 변수**와 **인스턴스 메소드**에 바로 접근할 수 있다.
 - **인스턴스 메소드**는 **클래스 변수**와 **클래스 메소드**에 바로 접근할 수 있다.
 - **클래스 메소드**는 **클래스 변수**와 **클래스 메소드**에 바로 접근할 수 있다.
@@ -579,6 +608,7 @@ public class Main {
 위와 같이 클래스 메소드인 main에서 인스턴스 메소드인 foo를 호출하려하면 `error: non-static method foo() cannot be referenced from a static context`라는 컴파일 에러가 발생한다. 따라서, `new Main().foo()`처럼 객체 reference를 만들거나, 혹은 foo를 static으로 선언하여 에러를 피할 수 있다. 물론 에러를 피하는 것은 둘째치고 필요에 따라 잘 결정해야 한다.
 
 ### Constants
+
 static과 final 제어자를 같이 써서 constant를 정의할 수 있다. final 제어자는 필드 값이 변경될 수 없다는 것을 명시한다.
 
 예를 들어, 다음 변수 선언은 PI라는 constant를 정의한다.
@@ -592,6 +622,7 @@ static final double PI = 3.141592653589793;
 **NOTE**: Primitive 타입이나 string이 constant로 정의되고, 그 값을 컴파일 타임때 알고 있다면, 컴파일러는 코드에 있는 모든 해당 constant 이름을 그 값으로 대체한다. 이를 *compile-time constant*라고 부른다. 만약 바깥에서 constant의 값이 바뀌면, 새로운 값을 쓰기 위해 해당 constant를 쓰는 클래스를 recompile해야 한다.
 
 ### Initializing Fields
+
 필드 선언 시, 다음과 같이 초기값을 줄 수 있다.
 
 ```java

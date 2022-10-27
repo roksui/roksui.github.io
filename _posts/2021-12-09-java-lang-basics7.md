@@ -66,7 +66,7 @@ public class EnumTest {
 
 Output:
 
-```
+```text
 Mondays are bad.
 Midweek days are so-so.
 Fridays are better.
@@ -139,7 +139,7 @@ public enum Planet {
 
 Command line로 인자 175를 주고 실행하면 다음과 같이 나온다.
 
-```bash
+```text
 $ java Planet 175
 Your weight on MERCURY is 66.107583
 Your weight on VENUS is 158.374842

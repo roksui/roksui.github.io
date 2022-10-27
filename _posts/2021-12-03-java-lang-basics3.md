@@ -17,7 +17,7 @@ categories:
 | postfix                  | expr++ expr--                           |
 | unary                    | ++expr --expr +expr -expr ~ !           |
 | multiplicative           | * / %                                   |
-| additive                 | + -                                     | 
+| additive                 | + -                                     |
 | shift                    | << >> >>>                               |
 | relational               | < > <= >= instanceof                    |
 | equality                 | == !=                                   |
@@ -43,6 +43,7 @@ System.out.println(--n + n++);
 물론, 서비스를 개발할 때 이런식으로 코딩할 일은 없어야 겠지만, 아카데믹적인 이유로 한 번은 생각해볼만 한 것 같다.
 
 내가 생각한 부분은 이렇다:
+
 - postfix 증감 연산자가 우선순위가 높으므로, 먼저 식은 `--n + 1`로 연산되고, n은 2로 증가한다.
 
 - 그 후, prefix 증감 연산자가 우선순위가 높으므로, 식은 `1 + 1`이 되므로 2가 출력될 것이다.
@@ -66,10 +67,12 @@ Java Language Specification(JLS)에 의하면 일단 확실한 부분은, 식이
 정확한 것은 Java 설계자들한테 물어봐야겠지만, JLS에서는 연산자 우선순위를 직접적으로 명시하진 않고, "Precedence among operators is managed by a hierarchy of grammar productions"라고 말한다.
 
 ### Conditional 연산자
+
 &&와 || 연산자는 두 개의 boolean 피연산자에게 Conditional-AND와 Conditional-OR 연산을 수행한다. 이 연산자들은 "short-circuiting" 특성을 갖는다 - 필요시에만 두 번째 피연산를 연산한다.
 
 ### instanceof 연산자
-Parent라는 클래스, MyInterface라는 인터페이스, 그리고 Parent를 상속받고 MyInterface를 구현하는 Child 클래스가 있다고 해보자.<br>
+
+Parent라는 클래스, MyInterface라는 인터페이스, 그리고 Parent를 상속받고 MyInterface를 구현하는 Child 클래스가 있다고 해보자.
 
 ```java
 class InstanceofDemo {
@@ -89,6 +92,7 @@ class InstanceofDemo {
 **NOTE**: instanceof 연산자를 사용할 때, null은 그 어떠한 것의 인스턴스도 아니라는 점의 유의하자.
 
 ### Bitwise와 Bit Shift 연산자
+
 Java 언어에서는 integral 타입(integer 값을 갖는 타입): byte, short, int, long, char에 대해 bitwise 및 bit shift 연산을 할 수 있다. 덜 사용되긴 하지만 알면 매우 유용하다.
 
 - Unary bitwise complement 연산자 '~'는 bit 패턴을 반대로 바꾼다. (0 <-> 1)
@@ -139,7 +143,7 @@ class BitDemo {
 
 아래와 같은 bitwise AND 연산이 수행된다.
 
-```
+```text
    00000000001111
 &  10001000100010
 __________________

@@ -5,6 +5,7 @@ categories:
 ---
 
 ## Arrays
+
 *Array(배열)*는 한 가지 타입의 고정된 개수의 값들을 저장하는 컨테이너 객체이다. 배열의 길이는 그것이 생성될 때 정해진다. 생성된 후로는 크기가 바뀔 수 없다.
 
 배열을 선언할 때는 다음과 같이 할 것이다.
@@ -25,7 +26,7 @@ anArray = new int[10];
 
 만약 이 구문을 안쓰면 선언한 배열이 초기화되지 않았을 수도 있다고 컴파일러가 불만을 표시한다.
 
-```
+```bash
 // compile-time error
 ArrayDemo.java:4: Variable anArray may not have been initialized.
 ```
@@ -61,6 +62,7 @@ class MultiDimArrayDemo {
 ```
 
 아웃풋:
+
 ```
 Mr. Smith
 Ms. Jones
@@ -70,7 +72,7 @@ Ms. Jones
 
 System 클래스의 arraycopy 메소드를 사용하여 효율적으로 한 배열의 데이터를 다른 배열로 복사할 수 있다.
 
-```
+```java
 public static void arraycopy(Object src, int srcPost, Object dest, int destPos, int length)
 ```
 
@@ -95,11 +97,13 @@ class ArrayCopyDemo {
 ```
 
 아웃풋:
-```
+
+```bash
 Cappuccino Corretto Cortado Doppio Espresso Frappucino Freddo
 ```
 
 ### Array Manipulations
+
 배열은 프로그래밍에서 사용되는 파워풀하고 유용한 개념이다. Java SE는 배열과 관련된 가장 흔한 조작에 대한 메소드들을 제공한다. 예를 들어, 방금과 같은 System 클래스의 arraycopy 메소드를 사용하여 src 배열의 원소를 일일이 iterate하여 하나씩 dest 배열에 넣어주는 일을 안해도 된다. 이러한 일은 behind the scene으로 진행되어 개발자는 메소드를 한 줄로 호출하기만 하면된다.
 
 Java SE의 java.util.Arrays 클래스에서 복사, 정렬, 탐색 등과 같은 배열 조작관련 메소드를 제공한다. 예를 들어, 이전 예시는 java.util.Arrays 클래스의 copyOfRange 메소드를 사용하여 똑같이 재현할 수 있다. 차이점은 copyOfRange 메소드는 메소드를 호출하기 전에 dest 배열을 생성할 필요가 없다는 점이다 - 메소드가 dest 배열을 리턴한다.
@@ -126,27 +130,34 @@ class ArrayCopyOfDemo {
 **NOTE**: copyOfRange 메소드의 두번째 파라미터가 나타내는 인덱스는 포함되고, 세번째 파라미터가 나타내는 인덱스는 포함되지 않는다 - 인덱스 9의 원소 "Lungo"는 복사되지 않았다.
 
 java.util.Arrays가 제공하는 또 다른 유용한 메소드들은 다음과 같다:
+
 - binarySearch 메소드: 배열에서 특정 값을 탐색하여 인덱스를 얻는다.
 - equals 메소드: 두 개의 배열이 동일한지 비교한다.
 - fill 메소드: 배열의 각 인덱스에 특정한 값을 넣는다.
 - sort 메소드: 배열을 순차적으로(sequentially) ascending 순서로 정렬한다.
 - parallelSort 메소드: 배열을 동시에(concurrently) ascending 순서로 정렬한다. (Java SE 8에서 소개됨)
 - stream 메소드: 배열을 소스로 사용하는 stream을 생성한다. 예를 들어 다음 구문은 copyTo 배열을 이전 예시와 같이 출력한다.
+
 ```java
 java.util.Arrays.stream(copyTo).map(coffee -> coffee + " ").forEach(System.out::print);
 ```
+
 - toString 메소드: 배열을 문자열로 변환한다. 배열의 각 원소를 문자열로 변환하고 콤마로 분리한 후 대괄호로 감싼다.
+
 ```java
 System.out.println(java.util.Arrays.toString(copyTo));
 ```
+
 아웃풋:
-```
+
+```bash
 [Cappuccino, Corretto, Cortado, Doppio, Espresso, Frappucino, Freddo] 
 ```
 
 이렇게 하여 Java 언어의 **Variables**와 관련된 내용은 모두 살펴봤다.
 
 ### Summary
+
 - 필드(field)와 변수(variable)은 둘 다 사용되는 용어이다.
 - Instance variable (non-static field)은 클래스의 각 인스턴스 마다 갖는 고유한 변수이다.
 - Class variable (static field)은 static 제어자를 통해 선언하고, 클래스가 몇 번 인스턴스화되었는지와 상관없이 단 하나의 카피만 존재한다.

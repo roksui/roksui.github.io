@@ -69,11 +69,13 @@ class BlockDemo {
 ```
 
 ## Control Flow Statements
+
 Java 언어에서 소스 코드의 구문들은 위에서 아래로 차례대로 실행된다. 하지만 흐름 제어 구문을 통해 decision making (의사결정), looping (반복), branching (브랜칭)을 적용하여 "conditionally(조건적으로)" 동작할 수 있다.
 
 위 세 가지 흐름 제어 구문은 코딩의 필수적인 요소들이라고 생각된다. 그 중에 branching statement(브랜칭 구문)에 대해 조금 살펴보자.
 
 ### The break Statement
+
 break 구문은 두 가지 형태를 가진다: labeled와 unlabeled. 다음 예제를 보자.
 
 ```java
@@ -107,9 +109,10 @@ class BreakDemo {
 
 이 프로그램은 배열에서 12를 찾는다. break 구문을 통해 값을 찾으면 for 구문을 나온다. 흐름 제어는 for 구문 밑으로 진행한다. 따라서 아웃풋은,
 
-```
+```text
 Found 12 at index 4
 ```
+
 가 된다.
 
 이런식으로 unlabeled break 구문은 많이 써봤다. 이는 가장 안에 있는 innermost한 switch, for, while, 혹은 do-while 구문을 탈출한다. 그러나 labeled break 구문으로 더 밖에 있는 구문을 탈출할 수 있다. 예를 들어, 중첩 for문을 쓰는데, 안에서 조건을 주어 outer for문을 탈출하고 싶을 수도 있다.
@@ -148,7 +151,7 @@ class BreakDemo {
 
 아웃풋:
 
-```
+```text
 Found 12 at 1, 0
 ```
 
