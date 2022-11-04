@@ -45,3 +45,8 @@ UNF를 1NF로 정규화해보자.
 즉, 반복 그룹을 제거하여 각 행과 열의 교집합(intersection)이 오로지 한 개의 값을 갖는 관계가 1NF이다.
 
 // TBD: UNF -> 1NF...
+
+
+http://cir.dcs.uni-pannon.hu/cikkek/Database_Normalization.pdf
+http://www.uop.edu.pk/ocontents/Database%20Normalization.pdf
+https://www.guru99.com/database-normalization.html
