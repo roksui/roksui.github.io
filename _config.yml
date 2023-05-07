@@ -21,9 +21,9 @@ title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Jeong Suh"
 description              : "Dev Factory"
-url                      : "https://chop-sui.github.io"
+url                      : "https://roksui.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "chop-sui/chop-sui.github.io"
+repository               : "roksui/roksui.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
@@ -114,7 +114,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/chop-sui"
+      url: "https://github.com/roksui"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -130,7 +130,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/chop-sui"
+      url: "https://github.com/roksui"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
