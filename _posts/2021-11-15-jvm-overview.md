@@ -1,5 +1,7 @@
 ---
 title: JVM Overview with HotSpot JVM
+categories: 
+  - Java Basics
 ---
 
 ## 개요

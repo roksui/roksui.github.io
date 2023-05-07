@@ -1,5 +1,7 @@
 ---
 title: "Lombok 사용법"
+categories: 
+  - Java Basics
 ---
 
 ## Lombok이란?

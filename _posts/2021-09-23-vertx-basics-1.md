@@ -1,5 +1,7 @@
 ---
 title: Vert.x Basics(1) - Vert.x Introduction
+categories: 
+  - Vert.x
 ---
 
 **Recall**: Vert.x는 reactive 애플리케이션을 JVM에서 구현하도록 해주는 툴킷/플랫폼이다.

@@ -1,5 +1,7 @@
 ---
 title: "GitHub Basics"
+categories: 
+  - Git Basics
 date: 2021-11-25 04:10:12
 ---
 

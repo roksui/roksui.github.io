@@ -1,8 +1,7 @@
 ---
-#layout: post
 title:  "P vs NP Basics"
-#date:   2020-10-16 22:44:56 +0900
-#categories: jekyll update
+categories: 
+  - Models of Computation
 use_math: true
 ---
 

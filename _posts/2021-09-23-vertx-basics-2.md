@@ -1,5 +1,7 @@
 ---
 title: Vert.x Basics(2) - Verticles and Event Bus
+categories: 
+  - Vert.x
 ---
 
 우리의 첫번째 Vert.x 애플리케이션을 만들어 보자.

@@ -1,5 +1,7 @@
 ---
 title: Vert.x Basics(3) - Buffers
+categories: 
+  - Vert.x
 ---
 
 Vert.x에서 실행되는 Verticle들은 때때로 데이터 블록을 처리해야 한다. 예를 들어, HTTP request를 받으면 그 안에 있는 데이터를 처리해야 할 수도 있고, 디스크로부터 로딩하는 데이터, 또는 HTTP request에 응답을 하기 위해 생성된 데이터 등등이 있을 것이다. Vert.x는 `Buffer` 인터페이스를 제공하여 이러한 데이터 블록 처리를 돕는다.

@@ -1,5 +1,7 @@
 ---
 title: "Git의 checkout에 대하여"
+categories: 
+  - Git Basics
 ---
 
 ## 개요

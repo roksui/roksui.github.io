@@ -1,5 +1,7 @@
 ---
 title: Vert.x Basics(4) - HTTP Server
+categories: 
+  - Vert.x
 ---
 
 우리의 애플리케이션이 HTTP request를 받을 수 있도록 Vert.x를 통해 HTTP 서버를 만들 수 있다. 필요에 따라 한 개 이상의 HTTP 서버를 만들 수 있다.

@@ -18,11 +18,26 @@
                         {% endif %}
                     {% endfor %}
                 </ul>
-            <span class="nav__sub-title">Computer Science Theories</span>
                 <ul>
                     {% for category in site.categories %}
-                        {% if category[0] == "CS" %}
-                            <li><a href="/categories/cs" class="">Algorithm&Data Structure ({{category[1].size}})</a></li>
+                        {% if category[0] == "Vert.x" %}
+                            <li><a href="/categories/vertx" class="">Vert.x ({{category[1].size}})</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            <span class="nav__sub-title">Git</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Git Basics" %}
+                        <li><a href="/categories/git-basics" class="">Git Basics ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <span class="nav__sub-title">Computer Science Theory</span>
+                <ul>
+                    {% for category in site.categories %}
+                        {% if category[0] == "Models of Computation" %}
+                            <li><a href="/categories/cs-mc" class="">Models of Computation ({{category[1].size}})</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>

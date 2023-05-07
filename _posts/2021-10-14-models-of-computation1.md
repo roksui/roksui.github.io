@@ -1,5 +1,7 @@
 ---
 title: Models of Computation(1) - Formal Language Theory and Recursive Definitions
+categories: 
+  - Models of Computation
 use_math: true
 ---
 
@@ -145,7 +147,3 @@ NOTE: Some texts use + or \| in regular expressions instead of $\cup$.
 Recall the question we said at the start: "Is the string $s$ in $L$?" for suitably chosen languages $L$.
 
 If we take $L$ to be $L(R)$, then this is called the membership problem for the RE $R$ (checks if $s \text{ matches } R$).
-
-## Reference
-
-USYD COMP Lectures, 2021 September

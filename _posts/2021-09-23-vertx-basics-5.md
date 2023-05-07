@@ -1,5 +1,7 @@
 ---
 title: Vert.x Basics(5) - HTTP Client
+categories: 
+  - Vert.x
 ---
 
 Vert.x에는 HTTP client가 포함되어있어 HTTP request를 비동기적으로 만드는 것이 수월하다. Vert.x에서의 모든 IO 액션은 이벤트 루프(event loop)를 block하지 않기 위해 비동기적으로 수행되어야 한다는 점을 기억하자. 이벤트 루프는 Verticle들과 그것들의 핸들러들을 관리하는 스레드(들)이다. Java의 built-in URL 및 URLConnection은 비동기가 아니라서 Vert.x 애플리케이션에서는 이 클래스들을 사용하지 않는 것이 좋다.

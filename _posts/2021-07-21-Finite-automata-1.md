@@ -1,5 +1,7 @@
 ---
 title: Finite Automata
+categories: 
+  - Models of Computation
 use_math: true
 ---
 

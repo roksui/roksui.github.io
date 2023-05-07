@@ -1,5 +1,7 @@
 ---
 title: JMX Mbeans
+categories: 
+  - Java Basics
 ---
 
 ## MBeans 소개

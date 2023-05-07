@@ -1,5 +1,7 @@
 ---
 title: Models of Computation(2) - Propositional Logic
+categories: 
+  - Models of Computation
 use_math: true
 ---
 
@@ -252,7 +254,3 @@ So the question becomes,
 This is extremely important as it is the central NP-complete problem.
 One can verify in polynomial time if a given assignment satisfies a formula, but it is not known if the satisfiability problem itself can be solved in polynomial time.
 And, many many problems can be efficiently reduced to the satisfiability problem.
-
-## Reference
-
-USYD COMP Lectures, 2021 September

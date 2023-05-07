@@ -1,5 +1,7 @@
 ---
 title: Models of Computation(3.1) - Propositional Logic (ND)
+categories: 
+  - Models of Computation
 use_math: true
 ---
 
@@ -300,7 +302,3 @@ In line 8, we use $(\lor \text{ Elim })$:
 - The $(\bot \text{ Intr })$ rule formalizes that $\bot$ follows from any contradiction.
 
 - The $(\lnot \text{ Intr })$ rule formalizes that if we find a proof of $\bot$ by assuming $A$, then we get $\lnot A$.
-
-## Reference
-
-USYD COMP Lectures, 2022 September

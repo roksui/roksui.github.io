@@ -1,5 +1,7 @@
 ---
 title: Reactive Programming 및 Vert.x 소개
+categories: 
+  - Vert.x
 ---
 
 ## Reactive Programming 소개

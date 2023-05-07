@@ -1,5 +1,7 @@
 ---
 title: Models of Computation(4) - Context-free Grammars (CFG)
+categories: 
+  - Models of Computation
 use_math: true
 ---
 ### Limitations of Regular Expressions
@@ -540,7 +542,3 @@ Type 3 (regular) $A \rightarrow aB \text{ and } A \rightarrow a$
 given that $u, v, z$ are string of variables and terminals and $z$ is not empty.
 
 --ADD IMAGE--
-
-## Reference
-
-USYD COMP Lectures, 2021 September

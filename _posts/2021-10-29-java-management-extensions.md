@@ -1,5 +1,7 @@
 ---
 title: JMX Technology (1)
+categories: 
+  - Java Basics
 ---
 
 **NOTE**: 해당 글에 있는 JMX Technology 내용은 오라클의 Java Documentation을 출처로 하고, 튜토리얼은 JDK8을 기반으로 작성된 것입니다.  

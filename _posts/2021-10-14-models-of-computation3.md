@@ -1,5 +1,7 @@
 ---
 title: Models of Computation(3) - Propositional Logic (CNF)
+categories: 
+  - Models of Computation
 use_math: true
 ---
 
@@ -142,7 +144,3 @@ We can represent constraints placed on vertexes as follows.
     $\bigwedge_{i, j \in E}(\lnot b_{i} \lor \lnot b_{j})$
 
 Now, we define $\phi$ to be the conjunction of all these constraints.
-
-## Reference
-
-USYD COMP Lectures, 2021 September
